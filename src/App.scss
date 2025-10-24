@@ -1,0 +1,14 @@
+.App {
+    display: grid;
+    grid:
+        'header' 80px 'main' auto / 1fr;
+
+
+    .header {
+        grid-area: header;
+    }
+
+    .courseCard {
+        grid-area: main;
+    }
+}

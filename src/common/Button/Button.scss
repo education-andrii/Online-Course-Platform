@@ -1,0 +1,21 @@
+@use '../variables.scss' as vars;
+
+.button {
+    background-color: vars.$main-color;
+    width: 140px;
+    height: 50px;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: black;
+    }
+
+    .buttonText {
+        color: vars.$main-contrast-color;
+        font-weight: 700;
+        font-size: 16px;
+    }
+}
