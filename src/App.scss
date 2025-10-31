@@ -1,14 +1,27 @@
 .App {
     display: grid;
     grid:
-        'header' 80px 'main' auto / 1fr;
+        'header header header' 80px '. main .' auto / 1fr 8fr 1fr;
 
 
     .header {
         grid-area: header;
     }
 
-    .courseCard {
+    .courseCardContainer {
         grid-area: main;
+        // display: flex;
+        // flex-direction: column;
+        // gap: 30px;
+    }
+
+    .emptyCourseList {
+        grid-area: main;
+    }
+
+    .courseInfoWrapper {
+        grid-area: main;
+        gap: 1rem;
+        margin: 3rem;
     }
 }

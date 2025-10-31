@@ -1,7 +1,9 @@
+@use './common/variables.scss' as vars;
+
 * {
     margin: 0;
     padding: 0;
-    color: #48333d;
+    color: vars.$main-text-color;
     font-family: "Open Sans", sans-serif;
 }
 

@@ -1,21 +1,35 @@
 // import styles from './CourseCard.module.scss'
 import './CourseCard.scss';
+import { Button } from '../../../../common/Button/Button';
+import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
 
 interface Props {
-    duration: string
+    id: string;
+    title: string;
+    description: string;
+    creationDate: string;
+    duration: string;
+    authors: string;
 }
 
-export const CourseCard: React.FC<Props> = ({ duration }) => {
+export const CourseCard: React.FC<Props> = ({ id, title, description, creationDate, duration, authors }) => {
     return (
-        <div className='courseCard'>
+        <div className='courseCard' id={id}>
             <div className="left-line"></div>
             <div className="course-card-container">
-                <div className="left-side">
-                    <h4>Angular</h4>
-                    <p className='title'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor, tempore ab aliquid ex eius est corrupti fuga. Vero, quos corporis iusto harum fugiat culpa ducimus, vel sapiente tempora inventore eveniet.</p>
-                </div>
-                <div className="rigth-side">
-                    <h6>{duration}</h6>
+                <h4 className='title'>{title}</h4>
+                <div className='left-right-container'>
+                    <div className="left-side">
+                        <p className='description'>{description}</p>
+                    </div>
+                    <div className="right-side">
+                        <div>
+                            <p><b>Authors:</b> <span>{authors}</span></p>
+                            <p><b>Duration:</b> {duration}</p>
+                            <p><b>Created:</b> {creationDate}</p>
+                        </div>
+                        <Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px'></Button>
+                    </div>
                 </div>
             </div>
         </div>
