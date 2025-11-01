@@ -1,13 +1,15 @@
 import { CourseCard } from './components/CourseCard/CourseCard';
-// import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList';
+import { Button } from '../../common/Button/Button.tsx';
+import { SearchBar } from './components/SearchBar/SearchBar.tsx';
+import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList.tsx';
 
-// import { mockedCoursesList } from '../../constants.ts';
-// import { mockedAuthorsList } from '../../constants.ts';
+import { BUTTON_ADD_NEW_COURSE_TEXT } from '../../constants.ts';
 
 import { getCourseDuration } from '../../helpers/getCourseDuration.ts';
 import { formatCreationDate } from '../../helpers/formatCreationDate.ts';
+import { getAutorsArray } from '../../helpers/getAutorsArray.ts';
 
-import styles from './Courses.module.scss'
+import styles from './Courses.module.scss';
 
 interface Authors {
     id: string;
@@ -29,43 +31,34 @@ interface Props {
 }
 
 export const Courses: React.FC<Props> = ({ authors, courses }) => {
-    const getAutorsArray = (authorId: string[]): string[] => {
-        if (authors !== undefined) {
-            const authorsArray = authors.filter((author) => authorId.includes(author.id));
-            return authorsArray.map((author) => author.name);
-        } else {
-            return []
-        }
-    }
-    if (courses !== undefined) {
+    if (courses !== undefined && authors !== undefined) {
         return (
-            <ul className='courseCardContainer'>
-                {courses.map((course, index) => {
-                    let courseAuthors = getAutorsArray(course.authors)
+            <div className='mainCoursesContainer'>
+                <div className={styles.mainFunctional}>
+                    <SearchBar />
+                    <Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' />
+                </div>
+                <ul className={styles.coursesList}>
+                    {courses.map((course, index) => {
+                        let courseAuthors: string[] = getAutorsArray(authors, course.authors)
 
-                    const MAX_AUTHORS = 2;
-                    let authorsToDisplay = [...courseAuthors]
-
-                    if (authorsToDisplay.length > MAX_AUTHORS) {
-                        authorsToDisplay = authorsToDisplay.slice(0, MAX_AUTHORS);
-                        authorsToDisplay.push('...')
-                    }
-
-                    return (
-                        <li key={course.id || index} className={styles.courseCard}>
-                            <CourseCard
-                                id={course.id}
-                                title={course.title}
-                                description={course.description}
-                                creationDate={formatCreationDate(course.creationDate)}
-                                duration={getCourseDuration(course.duration)}
-                                authors={authorsToDisplay.join(', ')} />
-                        </li>
-
-                    )
-                })}
-            </ul>
+                        return (
+                            <li key={course.id || index} className={styles.courseCard}>
+                                <CourseCard
+                                    id={course.id}
+                                    title={course.title}
+                                    description={course.description}
+                                    creationDate={formatCreationDate(course.creationDate)}
+                                    duration={getCourseDuration(course.duration)}
+                                    authors={courseAuthors.join(', ')} />
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         )
+    } else {
+        return <EmptyCourseList />
     }
 
 }

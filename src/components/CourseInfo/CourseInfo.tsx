@@ -1,6 +1,3 @@
-// import { getCourseDuration } from '../../helpers/getCourseDuration.ts';
-// import { formatCreationDate } from '../../helpers/formatCreationDate.ts';
-
 import { BUTTON_BACK_TEXT } from '../../constants.ts'
 import { Button } from '../../common/Button/Button.tsx';
 
@@ -16,6 +13,9 @@ interface Props {
 }
 
 export const CourseInfo: React.FC<Props> = ({ id, title, description, creationDate, duration, authors }) => {
+    const text: string = duration;
+    const [firstPart, secondPart] = text.split(' ');
+
     return (
         <div className='courseInfoWrapper'>
             <h3>{title}</h3>
@@ -34,20 +34,12 @@ export const CourseInfo: React.FC<Props> = ({ id, title, description, creationDa
                     </ul>
                     <ul className={styles.values}>
                         <li>{id}</li>
-                        <li>{duration}</li>
+                        <li>
+                            <b>{firstPart}</b> {secondPart}
+                        </li>
                         <li>{creationDate}</li>
                         <li>{authors}</li>
                     </ul>
-                    {/* <ul className={styles.infoList}>
-                        <li>
-                            <span className={styles.label}>Duration:</span>
-                            <span className={styles.value}>23:35 hours</span>
-                        </li>
-                        <li>
-                            <span className={styles.label}>Created:</span>
-                            <span className={styles.value}>01.01.2023</span>
-                        </li>
-                    </ul> */}
                 </div>
             </div>
             <Button buttonText={BUTTON_BACK_TEXT} width='185px' height='50px' className={styles.button}></Button>

@@ -8,11 +8,9 @@
         grid-area: header;
     }
 
-    .courseCardContainer {
+    .mainCoursesContainer {
         grid-area: main;
-        // display: flex;
-        // flex-direction: column;
-        // gap: 30px;
+        margin-top: 4.5rem;
     }
 
     .emptyCourseList {

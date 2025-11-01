@@ -1,4 +1,3 @@
-// import styles from './CourseCard.module.scss'
 import './CourseCard.scss';
 import { Button } from '../../../../common/Button/Button';
 import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
@@ -23,11 +22,11 @@ export const CourseCard: React.FC<Props> = ({ id, title, description, creationDa
                         <p className='description'>{description}</p>
                     </div>
                     <div className="right-side">
-                        <div>
-                            <p><b>Authors:</b> <span>{authors}</span></p>
-                            <p><b>Duration:</b> {duration}</p>
-                            <p><b>Created:</b> {creationDate}</p>
-                        </div>
+                        <ul>
+                            <li><b>Authors:</b> <span>{authors}</span></li>
+                            <li><b>Duration:</b> {duration}</li>
+                            <li><b>Created:</b> {creationDate}</li>
+                        </ul>
                         <Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px'></Button>
                     </div>
                 </div>

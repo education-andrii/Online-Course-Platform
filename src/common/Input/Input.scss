@@ -1,0 +1,19 @@
+@use '../variables.scss' as vars;
+
+.input {
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid vars.$main-lines-color;
+    border-radius: vars.$secondary-border-radius;
+    font-size: 1rem;
+}
+
+.input::placeholder {
+    color: vars.$main-lines-color;
+}
+
+.input:focus {
+    outline: none;
+    border-color: black;
+    color: vars.$main-text-color;
+}

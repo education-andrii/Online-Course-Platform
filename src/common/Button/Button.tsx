@@ -1,7 +1,6 @@
-// import styles from './Button.module.scss'
 import './Button.scss'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
     className?: string;
     id?: string;
     buttonText?: React.ReactNode;
@@ -10,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     height?: string
 }
 
-export const Button = ({ className, id, buttonText, onClick, width, height }: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = ({ className, id, buttonText, onClick, width = '180px', height = '50px' }) => {
     return (
         <button className={`button ${className ?? ""}`} id={id} onClick={onClick} style={{ width, height }}>
             <p className='buttonText'>{buttonText}</p>
