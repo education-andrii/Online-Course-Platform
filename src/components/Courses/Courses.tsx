@@ -30,8 +30,8 @@ interface Props {
     courses?: Courses[]
 }
 
-const Courses: React.FC<Props> = ({ authors, courses }) => {
-    if (courses !== undefined && authors !== undefined) {
+const Courses: React.FC<Props> = (props) => {
+    if (props.courses !== undefined && props.authors !== undefined) {
         return (
             <div className='mainCoursesContainer'>
                 <div className={styles.mainFunctional}>
@@ -39,8 +39,8 @@ const Courses: React.FC<Props> = ({ authors, courses }) => {
                     <Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' />
                 </div>
                 <ul className={styles.coursesList}>
-                    {courses.map((course, index) => {
-                        let courseAuthors: string[] = getAutorsArray(authors, course.authors)
+                    {props.courses.map((course, index) => {
+                        let courseAuthors: string[] = getAutorsArray(props.authors!, course.authors)
 
                         return (
                             <li key={course.id || index} className={styles.courseCard}>
