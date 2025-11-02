@@ -9,10 +9,11 @@ interface ButtonProps {
     height?: string
 }
 
-export const Button: React.FC<ButtonProps> = ({ className, id, buttonText, onClick, width = '180px', height = '50px' }) => {
+const Button: React.FC<ButtonProps> = ({ className, id, buttonText, onClick, width = '180px', height = '50px' }) => {
     return (
         <button className={`button ${className ?? ""}`} id={id} onClick={onClick} style={{ width, height }}>
             <p className='buttonText'>{buttonText}</p>
         </button>
     )
 }
+export default Button;

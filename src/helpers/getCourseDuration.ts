@@ -1,4 +1,4 @@
-export function getCourseDuration(time: number): string {
+function getCourseDuration(time: number): string {
     if (time >= 0) {
 
         const dd: number = Math.floor(time / 1440);
@@ -21,3 +21,4 @@ export function getCourseDuration(time: number): string {
         }
     } else return "Invalid duration"
 }
+export default getCourseDuration;

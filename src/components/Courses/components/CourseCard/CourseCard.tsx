@@ -1,5 +1,5 @@
 import './CourseCard.scss';
-import { Button } from '../../../../common/Button/Button';
+import Button from '../../../../common/Button/Button';
 import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
     authors: string;
 }
 
-export const CourseCard: React.FC<Props> = ({ id, title, description, creationDate, duration, authors }) => {
+const CourseCard: React.FC<Props> = ({ id, title = "Course Title", description = "Course Description", creationDate = "01/01/2025", duration = "60", authors = "Nicolas Kim" }) => {
     return (
         <div className='courseCard' id={id}>
             <div className="left-line"></div>
@@ -34,3 +34,4 @@ export const CourseCard: React.FC<Props> = ({ id, title, description, creationDa
         </div>
     )
 }
+export default CourseCard;

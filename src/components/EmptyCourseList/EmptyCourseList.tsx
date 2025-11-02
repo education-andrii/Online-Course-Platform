@@ -1,10 +1,10 @@
-import { Button } from "../../common/Button/Button";
+import Button from "../../common/Button/Button";
 
 import { BUTTON_ADD_NEW_COURSE_TEXT } from "../../constants";
 
 import './EmptyCourseList.scss'
 
-export const EmptyCourseList: React.FC = () => {
+const EmptyCourseList: React.FC = () => {
     return (
         <div className="emptyCourseList">
             <h3 className="emptyListTitle">Your List Is Empty</h3>
@@ -13,3 +13,4 @@ export const EmptyCourseList: React.FC = () => {
         </div>
     )
 }
+export default EmptyCourseList;

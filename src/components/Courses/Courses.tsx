@@ -1,13 +1,13 @@
-import { CourseCard } from './components/CourseCard/CourseCard';
-import { Button } from '../../common/Button/Button.tsx';
-import { SearchBar } from './components/SearchBar/SearchBar.tsx';
-import { EmptyCourseList } from '../EmptyCourseList/EmptyCourseList.tsx';
+import CourseCard from './components/CourseCard/CourseCard';
+import Button from '../../common/Button/Button.tsx';
+import SearchBar from './components/SearchBar/SearchBar.tsx';
+import EmptyCourseList from '../EmptyCourseList/EmptyCourseList.tsx';
 
 import { BUTTON_ADD_NEW_COURSE_TEXT } from '../../constants.ts';
 
-import { getCourseDuration } from '../../helpers/getCourseDuration.ts';
-import { formatCreationDate } from '../../helpers/formatCreationDate.ts';
-import { getAutorsArray } from '../../helpers/getAutorsArray.ts';
+import getCourseDuration from '../../helpers/getCourseDuration.ts';
+import formatCreationDate from '../../helpers/formatCreationDate.ts';
+import getAutorsArray from '../../helpers/getAutorsArray.ts';
 
 import styles from './Courses.module.scss';
 
@@ -30,7 +30,7 @@ interface Props {
     courses?: Courses[]
 }
 
-export const Courses: React.FC<Props> = ({ authors, courses }) => {
+const Courses: React.FC<Props> = ({ authors, courses }) => {
     if (courses !== undefined && authors !== undefined) {
         return (
             <div className='mainCoursesContainer'>
@@ -62,3 +62,4 @@ export const Courses: React.FC<Props> = ({ authors, courses }) => {
     }
 
 }
+export default Courses;

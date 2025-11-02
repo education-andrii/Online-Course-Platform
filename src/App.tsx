@@ -1,7 +1,7 @@
-import { Header } from './components/Header/Header.tsx';
-import { EmptyCourseList } from './components/EmptyCourseList/EmptyCourseList.tsx';
-import { Courses } from './components/Courses/Courses.tsx';
-import { CourseInfo } from './components/CourseInfo/CourseInfo.tsx';
+import Header from './components/Header/Header.tsx';
+import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList.tsx';
+import Courses from './components/Courses/Courses.tsx';
+import CourseInfo from './components/CourseInfo/CourseInfo.tsx';
 
 import { mockedCoursesList } from './constants.ts';
 import { mockedAuthorsList } from './constants.ts';

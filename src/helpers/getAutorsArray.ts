@@ -3,7 +3,7 @@ type Authors = {
     name: string;
 }
 
-export const getAutorsArray = (authors: Authors[], courseAuthorIds: string[]): string[] => {
+const getAutorsArray = (authors: Authors[], courseAuthorIds: string[]): string[] => {
     if (authors !== undefined) {
         const authorsArray = authors.filter((author) => courseAuthorIds.includes(author.id));
         return authorsArray.map((author) => author.name);
@@ -11,3 +11,4 @@ export const getAutorsArray = (authors: Authors[], courseAuthorIds: string[]): s
         return []
     }
 }
+export default getAutorsArray;

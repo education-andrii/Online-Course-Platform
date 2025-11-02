@@ -1,5 +1,5 @@
 import { BUTTON_BACK_TEXT } from '../../constants.ts'
-import { Button } from '../../common/Button/Button.tsx';
+import Button from '../../common/Button/Button.tsx';
 
 import styles from './CourseInfo.module.scss';
 
@@ -12,7 +12,7 @@ interface Props {
     authors: string;
 }
 
-export const CourseInfo: React.FC<Props> = ({ id, title, description, creationDate, duration, authors }) => {
+const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Course 1 description", creationDate = "01/01/2025", duration = "60", authors = "Nicolas Kim" }) => {
     const text: string = duration;
     const [firstPart, secondPart] = text.split(' ');
 
@@ -47,3 +47,4 @@ export const CourseInfo: React.FC<Props> = ({ id, title, description, creationDa
     )
 
 }
+export default CourseInfo;

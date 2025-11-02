@@ -1,7 +1,7 @@
 
 // Logic for replacing an entire author's name that doesn't fit on one line with '...'
 
-export function truncateNames(namesArray: string[]): string {
+function truncateNames(namesArray: string[]): string {
     const MAX_NAMES: number = 2;
     let namesToDisplay: string[] = [...namesArray];
 
@@ -11,3 +11,4 @@ export function truncateNames(namesArray: string[]): string {
     }
     return namesToDisplay.join(', ');
 }
+export default truncateNames;
