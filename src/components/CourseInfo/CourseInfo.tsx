@@ -18,11 +18,11 @@ const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Co
 
     return (
         <div className='courseInfoWrapper'>
-            <h3>{title}</h3>
+            <h3>Course 1</h3>
             <div className={styles.infoCardContainer}>
                 <div className={styles.cardLeftInfo}>
                     <h4 className={styles.title}>Description</h4>
-                    <p>{description}</p>
+                    <p>Course 1 description</p>
                 </div>
                 <div className={styles.divisionLine}></div>
                 <div className={styles.cardRightInfo}>
@@ -35,10 +35,10 @@ const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Co
                     <ul className={styles.values}>
                         <li>{id}</li>
                         <li>
-                            <b>{firstPart}</b> {secondPart}
+                            01:00 hour
                         </li>
-                        <li>{creationDate}</li>
-                        <li>{authors}</li>
+                        <li>01.01.2025</li>
+                        <li>name2, name3</li>
                     </ul>
                 </div>
             </div>
