@@ -12,7 +12,7 @@ interface Props {
     authors: string;
 }
 
-const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Course 1 description", creationDate = "01/01/2025", duration = "60", authors = "Nicolas Kim" }) => {
+const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Course 1 description", creationDate = "01.01.2025", duration = "01:00 hour", authors = "name2, name3" }) => {
     const text: string = duration;
     const [firstPart, secondPart] = text.split(' ');
 
