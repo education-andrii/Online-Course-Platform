@@ -12,17 +12,17 @@ interface Props {
     authors: string;
 }
 
-const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Course 1 description", creationDate = "01.01.2025", duration = "01:00 hour", authors = "name2, name3" }) => {
+const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Course 1 description", creationDate = "01/01/2025", duration = "60", authors = "Nicolas Kim" }) => {
     const text: string = duration;
     const [firstPart, secondPart] = text.split(' ');
 
     return (
         <div className='courseInfoWrapper'>
-            <h3>Course 1</h3>
+            <h3>{title}</h3>
             <div className={styles.infoCardContainer}>
                 <div className={styles.cardLeftInfo}>
                     <h4 className={styles.title}>Description</h4>
-                    <p>Course 1 description</p>
+                    <p>{description}</p>
                 </div>
                 <div className={styles.divisionLine}></div>
                 <div className={styles.cardRightInfo}>
@@ -35,10 +35,10 @@ const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Co
                     <ul className={styles.values}>
                         <li>{id}</li>
                         <li>
-                            01:00 hour
+                            <b>{firstPart}</b> {secondPart}
                         </li>
-                        <li>01.01.2025</li>
-                        <li>name2, name3</li>
+                        <li>{creationDate}</li>
+                        <li>{authors}</li>
                     </ul>
                 </div>
             </div>
