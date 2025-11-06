@@ -1,0 +1,18 @@
+@use './common/variables.scss' as vars;
+
+* {
+    margin: 0;
+    padding: 0;
+    color: vars.$main-text-color;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    position: relative;
+    background-color: #F7F7F7;
+
+    h4 {
+        font-size: 20px;
+        font-weight: 700;
+    }
+}

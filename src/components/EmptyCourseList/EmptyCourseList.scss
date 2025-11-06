@@ -1,0 +1,17 @@
+.emptyCourseList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    min-height: 80vh;
+}
+
+.emptyListTitle {
+    font-size: 32px;
+    margin-bottom: -10px;
+}
+
+.emptyListText {
+    margin-bottom: 10px;
+}

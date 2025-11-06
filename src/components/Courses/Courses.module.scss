@@ -1,0 +1,12 @@
+.mainFunctional {
+    display: flex;
+    justify-content: space-between;
+}
+
+.coursesList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 30px 0;
+}
