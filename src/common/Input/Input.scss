@@ -1,19 +1,35 @@
-@use '../variables.scss' as vars;
+@use '/src/scss/variables.scss' as vars;
 
-.input {
-    box-sizing: border-box;
-    padding: 12px;
-    border: 1px solid vars.$main-lines-color;
-    border-radius: vars.$secondary-border-radius;
-    font-size: 1rem;
-}
+.inputContainer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 
-.input::placeholder {
-    color: vars.$main-lines-color;
-}
+    .label {
+        font-weight: bold;
+    }
 
-.input:focus {
-    outline: none;
-    border-color: black;
-    color: vars.$main-text-color;
+    .input {
+        box-sizing: border-box;
+        padding: 12px;
+        border: 1px solid vars.$main-lines-color;
+        border-radius: vars.$secondary-border-radius;
+        font-size: 1rem;
+    }
+
+    .input::placeholder {
+        color: vars.$main-lines-color;
+    }
+
+    .input:focus {
+        outline: none;
+        border-color: black;
+        color: vars.$main-text-color;
+    }
+
+    .input-error-message {
+        display: none;
+        color: red;
+    }
 }

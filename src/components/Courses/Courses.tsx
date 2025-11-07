@@ -33,7 +33,7 @@ interface Props {
 const Courses: React.FC<Props> = ({ authors, courses }) => {
     if (courses !== undefined && authors !== undefined) {
         return (
-            <div className='mainCoursesContainer'>
+            <div className={styles.mainCoursesContainer}>
                 <div className={styles.mainFunctional}>
                     <SearchBar />
                     <Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' />

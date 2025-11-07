@@ -1,4 +1,4 @@
-@use './common/variables.scss' as vars;
+@use '/src/scss/variables.scss' as vars;
 
 * {
     margin: 0;
@@ -9,10 +9,15 @@
 
 body {
     position: relative;
-    background-color: #F7F7F7;
+    background-color: vars.$main-back-ground-color;
 
     h4 {
         font-size: 20px;
         font-weight: 700;
+    }
+
+    h3 {
+        font-size: 2rem;
+        font-weight: bold;
     }
 }

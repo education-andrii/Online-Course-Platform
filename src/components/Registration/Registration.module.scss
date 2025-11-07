@@ -1,0 +1,30 @@
+@use '/src/scss/variables.scss' as vars;
+@use '/src/scss/mixins';
+
+.registrationContainerWrapper {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    min-height: calc(100vh - 80px - 3rem);
+    margin-top: -2rem;
+
+    .registrationForm {
+        width: 585px;
+        height: 558px;
+        @include mixins.generic-cards;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4.5rem;
+        box-sizing: border-box;
+
+        &>a {
+            margin-bottom: -0.5rem;
+            text-decoration: none;
+        }
+    }
+}

@@ -1,10 +1,15 @@
-@use '../../common/variables.scss' as vars;
+@use '/src/scss/variables.scss' as vars;
+@use '/src/scss/mixins.scss';
+
+.courseInfoWrapper {
+    grid-area: main;
+    gap: 1rem;
+    margin: 0;
+}
 
 .infoCardContainer {
     display: flex;
-    background-color: vars.$main-contrast-color;
-    border: 2px solid rgba(0, 0, 0, 0.080);
-    border-radius: vars.$main-border-radius;
+    @include mixins.generic-cards;
     margin: 1rem 0 3rem 0;
     padding: 3rem;
     gap: 2rem;

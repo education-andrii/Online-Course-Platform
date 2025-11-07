@@ -17,7 +17,7 @@ const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Co
     const [firstPart, secondPart] = text.split(' ');
 
     return (
-        <div className='courseInfoWrapper'>
+        <div className={styles.courseInfoWrapper}>
             <h3>{title}</h3>
             <div className={styles.infoCardContainer}>
                 <div className={styles.cardLeftInfo}>

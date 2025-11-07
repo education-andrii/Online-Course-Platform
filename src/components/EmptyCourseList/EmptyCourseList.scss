@@ -1,10 +1,11 @@
 .emptyCourseList {
+    grid-area: main;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    min-height: 80vh;
+    min-height: calc(100vh - 80px - 3rem);
 }
 
 .emptyListTitle {
@@ -14,4 +15,8 @@
 
 .emptyListText {
     margin-bottom: 10px;
+}
+
+.emptyCourseListButton {
+    margin-bottom: 10rem;
 }
