@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 import { BUTTON_LOGIN_TEXT } from '../../constants';
@@ -39,7 +41,7 @@ const Registration: React.FC = () => {
                 <Input id="email" name="email" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" required width='286px' height='50px' />
                 <Input id='password' name='password' placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" required width='286px' height='50px' />
                 <Button buttonText={BUTTON_LOGIN_TEXT} type="submit" width='286px' height='50px' />
-                <a href='#'>If you have an account you may <b>Login</b></a>
+                <Link to="/login">If you have an account you may <b>Login</b></Link>
             </form>
         </div >
     )

@@ -18,7 +18,7 @@ const Input: React.FC<Props> = ({ className, id, name, placeholder, onClick, onC
         <div className='inputContainer'>
             <label className='label' htmlFor={id}>{labelText}</label>
             <input type="text" className={`input ${className ?? ""}`} id={id} name={name} placeholder={placeholder} onClick={onClick} onChange={onChange} style={{ width, height }} />
-            <p className='input-error-message'>{labelText} is required</p>
+            <p className='input-error-message'>{labelText} is required.</p>
         </div>
     )
 }
