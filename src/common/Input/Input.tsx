@@ -5,6 +5,7 @@ interface Props {
     className?: string;
     id?: string;
     name?: string;
+    value?: string;
     withValidation?: boolean;
     type?: string;
     placeholder?: string;
@@ -18,11 +19,11 @@ interface Props {
     height?: string;
 }
 
-const Input: React.FC<Props> = ({ className, id, name, withValidation, type = 'text', placeholder, onClick, onChange, labelText, isValid, children, width = '400px', height = '50px' }) => {
+const Input: React.FC<Props> = ({ className, id, name, value, withValidation, type = 'text', placeholder, onClick, onChange, labelText, isValid, children, width = '400px', height = '50px' }) => {
     return (
         <div className='inputContainer'>
             <label className='label' htmlFor={id}>{labelText}</label>
-            <input type={type} className={`input ${className ?? ""} ${withValidation && (isValid ? '' : 'input-error')}`} id={id} name={name} placeholder={placeholder} onClick={onClick} onChange={onChange} style={{ width, height }} />
+            <input type={type} className={`input ${className ?? ""} ${withValidation && (isValid ? '' : 'input-error')}`} id={id} name={name} value={value} placeholder={placeholder} onClick={onClick} onChange={onChange} style={{ width, height }} />
             {children}
         </div>
     )
