@@ -27,22 +27,33 @@ const Login: React.FC = () => {
             [name]: value,
         }))
 
-        setIsFormValid((prev) => ({
-            ...prev,
-            [name]: true,
-        }))
+        if (value.trim() !== "") {
+            setIsFormValid((prev) => ({
+                ...prev,
+                [name]: value.trim() !== '',
+            }))
+        }
     }
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>): void => {
         if (formRef.current) {
             e.preventDefault();
-            const errors = {
-                email: !(formValues.email.trim() === ''),
-                password: !(formValues.password.trim() === '')
-            }
-            setIsFormValid(errors)
 
-            if (errors.email && errors.password) {
+            const formData = new FormData(formRef.current);
+
+            const emailValue = (formData.get('email') as string || '').trim()
+            const passwordValue = (formData.get('password') as string || '').trim()
+
+            const isEmailValid = emailValue !== '';
+            const isPasswordValid = passwordValue !== '';
+
+            setIsFormValid({
+                email: isEmailValid,
+                password: isPasswordValid
+            })
+
+
+            if (isEmailValid && isPasswordValid) {
                 formRef.current.reset();
                 setFormValues({
                     email: "",
@@ -58,18 +69,13 @@ const Login: React.FC = () => {
     }
 
     return (
-        // <div className={styles.loginContainerWrapper}>
-        //     <h3>Login</h3>
-        //     <form ref={formRef} className={styles.loginForm} onSubmit={handleLogin}>
-        //         <Input id="email" name="email" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
-        //         <Input id='password' name='password' placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px' />
-        //         <Button buttonText={BUTTON_LOGIN_TEXT} type="submit" width='286px' height='50px' />
-        //         <Link to="/registration"><span>If you don't have an account you may<b>Registration</b></span></Link>
-        //     </form>
-        // </div >
         <Authentication title={"Login"} formRef={formRef} handleLogin={handleLogin} buttonText={BUTTON_LOGIN_TEXT} linkPath={'/registration'} linkText={`If you don't have an account you may`} linkBoldText={'Registration'}>
-            <Input id="email" name="email" withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
-            <Input id='password' name='password' withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px' />
+            <Input id="email" name="email" withValidation type="email" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px'>
+                <p className={`input-error-message ${isFormValid.email ? 'hidden' : 'visible'}`}>Email is required.</p>
+            </Input>
+            <Input id='password' name='password' withValidation type="password" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px'>
+                <p className={`input-error-message ${isFormValid.password ? 'hidden' : 'visible'}`}>Password is required.</p>
+            </Input>
         </Authentication>
     )
 }
