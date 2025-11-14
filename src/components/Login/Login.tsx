@@ -1,23 +1,20 @@
 import Authentication from '../Authentication/Authentication';
 import Input from '../../common/Input/Input';
 
-import { BUTTON_REGISTRATION_TEXT } from '../../constants';
+import { BUTTON_LOGIN_TEXT } from '../../constants';
 import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 
 import { useRef } from 'react';
 import { useState } from 'react';
 
-
-const Registration: React.FC = () => {
+const Login: React.FC = () => {
     const formRef = useRef<HTMLFormElement>(null);
     const [formValues, setFormValues] = useState({
-        name: "",
         email: "",
         password: ""
     });
 
     const [isFormValid, setIsFormValid] = useState({
-        name: true,
         email: true,
         password: true
     })
@@ -40,21 +37,18 @@ const Registration: React.FC = () => {
         if (formRef.current) {
             e.preventDefault();
             const errors = {
-                name: !(formValues.name.trim() === ''),
                 email: !(formValues.email.trim() === ''),
                 password: !(formValues.password.trim() === '')
             }
             setIsFormValid(errors)
 
-            if (errors.name && errors.email && errors.password) {
+            if (errors.email && errors.password) {
                 formRef.current.reset();
                 setFormValues({
-                    name: "",
                     email: "",
                     password: ""
                 })
                 setIsFormValid({
-                    name: true,
                     email: true,
                     password: true
                 })
@@ -64,18 +58,16 @@ const Registration: React.FC = () => {
     }
 
     return (
-        // <div className={styles.registrationContainerWrapper}>
-        //     <h3>Registration</h3>
-        //     <form ref={formRef} className={styles.registrationForm} onSubmit={handleLogin}>
-
-        //         <Input id="email" name="email" withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
-        //         <Input id='password' name='password' withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px' />
-        //         <Button buttonText={BUTTON_REGISTRATION_TEXT} type="submit" width='286px' height='50px' />
-        //         <Link to="/login"><span>If you have an account you may <b>Login</b></span></Link>
+        // <div className={styles.loginContainerWrapper}>
+        //     <h3>Login</h3>
+        //     <form ref={formRef} className={styles.loginForm} onSubmit={handleLogin}>
+        //         <Input id="email" name="email" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
+        //         <Input id='password' name='password' placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px' />
+        //         <Button buttonText={BUTTON_LOGIN_TEXT} type="submit" width='286px' height='50px' />
+        //         <Link to="/registration"><span>If you don't have an account you may<b>Registration</b></span></Link>
         //     </form>
         // </div >
-        <Authentication title={"Registration"} formRef={formRef} handleLogin={handleLogin} buttonText={BUTTON_REGISTRATION_TEXT} linkPath={'/login'} linkText={`If you have an account you may`} linkBoldText={'Login'}>
-            <Input id="name" name="name" withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Name" isValid={isFormValid.name} width='286px' height='50px' />
+        <Authentication title={"Login"} formRef={formRef} handleLogin={handleLogin} buttonText={BUTTON_LOGIN_TEXT} linkPath={'/registration'} linkText={`If you don't have an account you may`} linkBoldText={'Registration'}>
             <Input id="email" name="email" withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
             <Input id='password' name='password' withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px' />
         </Authentication>
@@ -84,4 +76,4 @@ const Registration: React.FC = () => {
 
 
 
-export default Registration;
+export default Login;

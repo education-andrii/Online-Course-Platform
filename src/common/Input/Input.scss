@@ -5,6 +5,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     .label {
         font-weight: bold;
@@ -28,8 +29,25 @@
         color: vars.$main-text-color;
     }
 
+    .input-error {
+        border: red solid 1px;
+    }
+
+    .input-error:focus {
+        border: red solid 1px;
+    }
+
     .input-error-message {
-        display: none;
         color: red;
+        position: absolute;
+        top: 100%;
+    }
+
+    .hidden {
+        opacity: 0;
+    }
+
+    .visible {
+        opacity: 1;
     }
 }
