@@ -13,7 +13,7 @@ interface Props {
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
     labelText?: string;
     required?: boolean;
-    isValid: boolean;
+    isValid?: boolean;
     children?: ReactNode;
     width?: string;
     height?: string;

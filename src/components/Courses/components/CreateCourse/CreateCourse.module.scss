@@ -1,0 +1,67 @@
+@use '/src/scss/variables.scss' as vars;
+@use '/src/scss/mixins';
+
+.createCourseContainerWrapper {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$main-gap;
+
+        .input {
+            width: 100%;
+        }
+
+        .createCourseContainer {
+            width: 100%;
+            @include mixins.generic-cards;
+            display: flex;
+            flex-direction: column;
+            gap: 2.25rem;
+            padding: 4.5rem;
+            box-sizing: border-box;
+
+            h4 {
+                font-size: 1.5rem;
+            }
+
+            label {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .textarea {
+                width: 100%;
+                height: 152px;
+                box-sizing: border-box;
+                padding: 12px;
+                border: 1px solid vars.$main-lines-color;
+                border-radius: vars.$secondary-border-radius;
+                font-size: 1rem;
+            }
+
+            .textarea::placeholder {
+                color: vars.$main-lines-color;
+            }
+
+            .textarea:focus {
+                outline: none;
+                border-color: black;
+                color: vars.$main-text-color;
+            }
+        }
+
+        .buttonsContainer {
+            align-self: self-end;
+            display: flex;
+            gap: vars.$secondary-gap;
+
+        }
+
+    }
+
+}

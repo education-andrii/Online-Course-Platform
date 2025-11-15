@@ -1,39 +1,3 @@
-// @use '/src/scss/variables.scss' as vars;
-// @use '/src/scss/mixins';
-
-// .authenticationContainerWrapper {
-//     grid-area: main;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     gap: 2rem;
-//     min-height: calc(100vh - 80px - 3rem);
-//     margin-top: -2rem;
-
-//     .authenticationForm {
-//         width: 585px;
-//         height: 558px;
-//         @include mixins.generic-cards;
-//         display: flex;
-//         flex-direction: column;
-//         align-items: center;
-//         padding: 4.5rem;
-//         gap: 2rem;
-//         box-sizing: border-box;
-
-//         &>a {
-//             margin-bottom: -0.5rem;
-//             text-decoration: none;
-//         }
-
-//         span {
-//             display: flex;
-//             flex-direction: column;
-//             align-items: center;
-//         }
-//     }
-// }
 @use '/src/scss/variables.scss' as vars;
 @use '/src/scss/mixins';
 

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import CourseCard from './components/CourseCard/CourseCard';
 import Button from '../../common/Button/Button.tsx';
 import SearchBar from './components/SearchBar/SearchBar.tsx';
@@ -36,7 +38,7 @@ const Courses: React.FC<Props> = ({ authors, courses }) => {
             <div className={styles.mainCoursesContainer}>
                 <div className={styles.mainFunctional}>
                     <SearchBar />
-                    <Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' />
+                    <Link to="/create-course"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
                 </div>
                 <ul className={styles.coursesList}>
                     {courses.map((course, index) => {

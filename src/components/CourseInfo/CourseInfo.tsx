@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { BUTTON_BACK_TEXT } from '../../constants.ts'
 import Button from '../../common/Button/Button.tsx';
 
@@ -18,7 +20,7 @@ const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Co
 
     return (
         <div className={styles.courseInfoWrapper}>
-            <h3>{title}</h3>
+            <h1>{title}</h1>
             <div className={styles.infoCardContainer}>
                 <div className={styles.cardLeftInfo}>
                     <h4 className={styles.title}>Description</h4>
@@ -42,7 +44,7 @@ const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Co
                     </ul>
                 </div>
             </div>
-            <Button buttonText={BUTTON_BACK_TEXT} width='185px' height='50px' className={styles.button}></Button>
+            <Link to='/'><Button buttonText={BUTTON_BACK_TEXT} width='185px' height='50px' className={styles.button}></Button></Link>
         </div>
     )
 

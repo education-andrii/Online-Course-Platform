@@ -6,6 +6,7 @@ import Courses from './components/Courses/Courses.tsx';
 import CourseInfo from './components/CourseInfo/CourseInfo.tsx';
 import Registration from './components/Registration/Registration.tsx';
 import Login from './components/Login/Login.tsx';
+import CreateCourse from './components/Courses/components/CreateCourse/CreateCourse.tsx';
 
 import { mockedCoursesList } from './constants.ts';
 import { mockedAuthorsList } from './constants.ts';
@@ -34,6 +35,7 @@ function App() {
             authors={'Nicolas Kim, Valentina Larina'} />} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/create-course' element={<CreateCourse />} />
         </Routes>
       </div>
     </Router>

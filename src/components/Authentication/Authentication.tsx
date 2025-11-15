@@ -20,7 +20,7 @@ const Authentication: React.FC<Props> = ({ title, children, formRef, handleSubmi
 
     return (
         <div className={styles.authenticationContainerWrapper}>
-            <h3>{title}</h3>
+            <h1>{title}</h1>
             <form ref={formRef} className={styles.authenticationForm} onSubmit={handleSubmit}>
                 {children}
                 <Button buttonText={buttonText} type="submit" width='286px' height='50px' />
