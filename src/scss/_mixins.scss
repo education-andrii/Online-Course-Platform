@@ -5,3 +5,28 @@
     border: 2px solid rgba(0, 0, 0, 0.080);
     border-radius: vars.$main-border-radius;
 }
+
+@mixin generic-inputs() {
+
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid vars.$main-lines-color;
+    border-radius: vars.$secondary-border-radius;
+    font-size: 1rem;
+
+    &::placeholder {
+        color: vars.$main-lines-color;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: black;
+        color: vars.$main-text-color;
+    }
+}
+
+@mixin input-vertical-stack($gap: vars.$secondary-gap) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}

@@ -10,8 +10,8 @@ const AuthorItem: React.FC<Props> = ({ name }) => {
     return (
         <div className={styles.wrapper}>
             <p>{name}</p>
-            <img src={add} alt="Add" />
-            <img src={remove} alt="Remove" />
+            <button><img src={add} alt="Add" /></button>
+            <button><img src={remove} alt="Remove" /></button>
         </div>
     )
 }

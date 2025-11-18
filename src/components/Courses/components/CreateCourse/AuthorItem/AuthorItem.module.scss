@@ -3,7 +3,12 @@
     gap: 0.5rem;
     align-items: center;
 
-    img {
+    button {
+        all: unset;
+        align-items: center;
+        display: flex;
         cursor: pointer;
+        border: 4px solid transparent;
+        margin: -4px;
     }
 }
