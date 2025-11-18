@@ -23,8 +23,11 @@ const Input: React.FC<Props> = ({ className, id, name, value, withValidation, ty
     return (
         <div className='inputContainer'>
             <label className='label' htmlFor={id}>{labelText}</label>
-            <input type={type} className={`input ${className ?? ""} ${withValidation && (isValid ? '' : 'input-error')}`} id={id} name={name} value={value} placeholder={placeholder} onClick={onClick} onChange={onChange} style={{ width, height }} />
-            {children}
+            <div>
+                <input type={type} className={`input ${className ?? ""} ${withValidation && (isValid ? '' : 'input-error')}`} id={id} name={name} value={value} placeholder={placeholder} onClick={onClick} onChange={onChange} style={{ width, height }} />
+                {withValidation && <p className={`input-error-message ${isValid ? 'hidden' : 'visible'}`}>{labelText} is required.</p>}
+                {children}
+            </div>
         </div>
     )
 }
