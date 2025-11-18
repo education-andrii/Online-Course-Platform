@@ -10,6 +10,7 @@
     position: fixed;
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.150);
     box-sizing: border-box;
+    z-index: 1000;
 
     div {
         display: flex;
