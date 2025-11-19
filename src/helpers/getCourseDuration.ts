@@ -1,4 +1,7 @@
-function getCourseDuration(time: number): string {
+function getCourseDuration(time: number | string): string {
+    if (typeof time !== 'number') {
+        time = Number(time)
+    }
     if (time >= 0) {
 
         const dd: number = Math.floor(time / 1440);
