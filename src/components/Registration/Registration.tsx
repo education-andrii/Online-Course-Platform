@@ -6,6 +6,8 @@ import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 
 import { useState } from 'react';
 
+import { FormData } from '../Courses/components/CreateCourse/CreateCourse';
+
 
 const Registration: React.FC = () => {
     const [formValues, setFormValues] = useState({
@@ -14,7 +16,7 @@ const Registration: React.FC = () => {
         password: ""
     });
 
-    const [isFormValid, setIsFormValid] = useState({
+    const [isFormValid, setIsFormValid] = useState<FormData>({
         name: true,
         email: true,
         password: true

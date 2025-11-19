@@ -1,33 +1,145 @@
 import { Link } from "react-router-dom";
 
+import { useState } from "react";
+
 import AuthorItem from "./AuthorItem/AuthorItem";
 import Button from "../../../../common/Button/Button";
 import Input from "../../../../common/Input/Input";
+import Textarea from "../../../../common/Textarea/Textarea";
 
-import { INPUT_INPUT_TEXT_PLACEHOLDER } from "../../../../constants";
 import { BUTTON_CANCEL_TEXT } from "../../../../constants";
 import { BUTTON_CREATE_COURSE_TEXT } from "../../../../constants";
 import { BUTTON_CREATE_AUTHOR_TEXT } from "../../../../constants";
 
 import getCourseDuration from "../../../../helpers/getCourseDuration";
+import validateField from "../../../../helpers/validateField";
 
 import styles from './CreateCourse.module.scss'
 
+const forbiddenSymbols = /[@#$%^&]/
+
+export interface FormData {
+    title?: boolean;
+    description?: boolean;
+    duration?: boolean;
+    author?: boolean;
+    [key: string]: boolean | undefined;
+}
+
+interface errorsObject {
+    title?: string;
+    description?: string;
+    duration?: string;
+    author?: string;
+}
+
 const CreateCourse: React.FC = () => {
-    const text = getCourseDuration(0)
+
+    const [formValues, setFormValues] = useState({
+        title: '',
+        description: '',
+        duration: '',
+        author: ''
+    })
+
+    let { title, description, duration, author } = formValues;
+
+    const [isInputValid, setIsInputValid] = useState<FormData>({
+        title: true,
+        description: true,
+        duration: true,
+        author: true,
+    })
+
+    const [errorMessages, setErrorMessages] = useState<errorsObject>({})
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+        const { name, value } = event.target
+
+        setIsInputValid((prev) => ({
+            ...prev,
+            [name]: true
+        }))
+
+        if (name === "duration") {
+            setFormValues((prev) => ({
+                ...prev,
+                [name]: value.replace(/[^0-9]/g, '')
+            }))
+
+            if (isNaN(Number(value)) || value[value.length - 1] === ' ') {
+
+                setErrorMessages(prev => ({
+                    ...prev,
+                    duration: 'The value should be a number',
+                }))
+
+                setIsInputValid((prev) => ({
+                    ...prev,
+                    [name]: false
+                }))
+            } else {
+                setErrorMessages(prev => ({ ...prev, duration: '', }))
+            }
+
+        } else {
+            setFormValues((prev) => ({
+                ...prev,
+                [name]: value
+            }))
+
+        }
+    }
+
+    const handleCreateCourse = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const entries = Object.entries(formValues);
+        const newValidationState: FormData = {}
+
+
+        for (let [key, value] of entries) {
+            newValidationState[key] = key === "duration" ? validateField(Number(value))[0] : validateField(value, 2)[0]
+
+            setErrorMessages((prev) => ({
+                ...prev,
+                [key]: validateField(key === "duration" ? Number(value) : value, 2, key)[1]
+            }))
+        }
+
+        setIsInputValid(newValidationState)
+
+        if (Object.values(newValidationState).every(element => element === true)) {
+            event.currentTarget.reset();
+            setFormValues({
+                title: '',
+                description: '',
+                duration: '',
+                author: ''
+            })
+            setIsInputValid({
+                title: true,
+                description: true,
+                duration: true,
+                author: true,
+            })
+        }
+    }
+
+
+    const text = getCourseDuration(duration)
     const [firstPart, secondPart] = text.split(' ');
 
     return (
         <div className={styles.createCourseContainerWrapper}>
             <h1>Course edit/Create page</h1>
-            <form>
+            <form onSubmit={handleCreateCourse}>
                 <div className={styles.createCourseContainer}>
                     <div className={styles.upperPart}>
                         <div className={styles.mainInfo}>
                             <h3>Main Info</h3>
-                            <Input id="title" name="title" withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} labelText="Title" isValid={true} width="100%" />
-                            <label htmlFor="createCourseDescription">Description
-                                <textarea name="createCourseDescription" id="createCourseDescription" className={styles.textarea} placeholder="Input Text"></textarea></label>
+                            <Input id="title" name="title" value={title} withValidation onChange={(e) => handleChange(e)} labelText="Title" isValid={isInputValid.title} errorMessage={errorMessages.title} width="100%" />
+                            <Textarea className={styles.textarea} name="description" id="description" value={description} withValidation onChange={(e) => handleChange(e)} labelText="Description" isValid={isInputValid.description} errorMessage={errorMessages.description}></Textarea>
                         </div>
                     </div>
 
@@ -36,7 +148,7 @@ const CreateCourse: React.FC = () => {
                             <div className={styles.duration}>
                                 <h3>Duration</h3>
                                 <div>
-                                    <Input id="duration" name="duration" withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} labelText="Duration" isValid={true}>
+                                    <Input id="duration" name="duration" value={duration} withValidation onChange={(e) => handleChange(e)} labelText="Duration" isValid={isInputValid.duration} errorMessage={errorMessages.duration}>
                                         <span><b>{firstPart}</b> {secondPart}</span></Input>
                                 </div>
                             </div>
@@ -44,7 +156,7 @@ const CreateCourse: React.FC = () => {
                                 <div className={styles.authorsInput}>
                                     <h3>Authors</h3>
                                     <div>
-                                        <Input id="authors" name="authors" withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} labelText="Author Name" isValid={true}>
+                                        <Input id="author" name="author" value={author} withValidation onChange={(e) => handleChange(e)} labelText="Author Name" isValid={isInputValid.author} errorMessage={errorMessages.author}>
                                             <Button buttonText={BUTTON_CREATE_AUTHOR_TEXT} />
                                         </Input>
                                     </div>

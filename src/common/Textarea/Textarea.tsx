@@ -17,17 +17,18 @@ interface Props {
     required?: boolean;
     isValid?: boolean;
     children?: ReactNode;
+    errorMessage?: string
     width?: string;
     height?: string;
 }
 
-const Textarea: React.FC<Props> = ({ className, id, name, value, withValidation, placeholder = INPUT_INPUT_TEXT_PLACEHOLDER, onClick, onChange, labelText, isValid, children, width = '400px', height = '150px' }) => {
+const Textarea: React.FC<Props> = ({ className, id, name, value, withValidation, placeholder = INPUT_INPUT_TEXT_PLACEHOLDER, onClick, onChange, labelText, isValid, children, errorMessage = `${labelText} is required`, width = '400px', height = '150px' }) => {
     return (
         <div className='textareaContainer'>
             <label className='label' htmlFor={id}>{labelText}</label>
             <div>
                 <textarea className={`textarea ${className ?? ""} ${withValidation && (isValid ? '' : 'textarea-error')}`} id={id} name={name} value={value} placeholder={placeholder} onClick={onClick} onChange={onChange} style={{ width, height }}></textarea>
-                {withValidation && <p className={`textarea-error-message ${isValid ? 'hidden' : 'visible'}`}>{labelText} is required.</p>}
+                {withValidation && <p className={`textarea-error-message ${isValid ? 'hidden' : 'visible'}`}>{errorMessage}</p>}
                 {children}
             </div>
         </div>

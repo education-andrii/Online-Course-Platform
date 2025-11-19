@@ -34,13 +34,18 @@
             .upperPart {
                 .mainInfo {
                     @include mixins.input-vertical-stack;
+                    gap: 1.75rem;
+
+                    h3 {
+                        margin-bottom: -0.75rem;
+                    }
 
                     .textarea {
-                        @include mixins.generic-inputs;
-
                         width: 100%;
                         height: 152px;
                         min-width: 100%;
+                        min-height: 152px;
+                        resize: none;
                     }
                 }
             }
@@ -64,7 +69,7 @@
                     }
 
                     .authors {
-                        @include mixins.input-vertical-stack;
+                        @include mixins.input-vertical-stack(vars.$third-gap);
 
                         .authorsInput {
                             @include mixins.input-vertical-stack;
@@ -78,6 +83,8 @@
 
                             ul {
                                 list-style: none;
+                                padding: 0;
+                                margin: 0;
 
                                 li {
                                     margin: 0.5rem 0;
