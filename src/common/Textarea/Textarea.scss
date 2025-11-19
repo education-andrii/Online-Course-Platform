@@ -1,9 +1,10 @@
 @use '/src/scss/variables.scss' as vars;
 @use '/src/scss/mixins' as mixins;
 
-@include mixins.input-styles("input");
+@include mixins.input-styles("textarea");
 
-// .inputContainer {
+
+// .textareaContainer {
 //     margin: 0;
 //     padding: 0;
 //     display: flex;
@@ -20,19 +21,19 @@
 //         font-weight: bold;
 //     }
 
-//     .input {
+//     .textarea {
 //         @include mixins.generic-inputs;
 //     }
 
-//     .input-error {
+//     .textarea-error {
 //         border: red solid 1px;
 //     }
 
-//     .input-error:focus {
-//         border: red solid 2px;
+//     .textarea-error:focus {
+//         border: red solid 1px;
 //     }
 
-//     .input-error-message {
+//     .textarea-error-message {
 //         color: red;
 //         position: absolute;
 //         top: 100%;
