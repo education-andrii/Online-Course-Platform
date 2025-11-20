@@ -16,14 +16,14 @@ import validateField from "../../../../helpers/validateField";
 
 import styles from './CreateCourse.module.scss'
 
-const forbiddenSymbols = /[@#$%^&]/
+// const forbiddenSymbols = /[@#$%^&]/
 
 export interface FormData {
     title?: boolean;
     description?: boolean;
     duration?: boolean;
     author?: boolean;
-    [key: string]: boolean | undefined;
+    [key: string]: boolean | undefined | string;
 }
 
 interface errorsObject {
@@ -99,11 +99,11 @@ const CreateCourse: React.FC = () => {
 
 
         for (let [key, value] of entries) {
-            newValidationState[key] = key === "duration" ? validateField(Number(value))[0] : validateField(value, 2)[0]
+            newValidationState[key] = validateField(value, 2, key)[0]
 
             setErrorMessages((prev) => ({
                 ...prev,
-                [key]: validateField(key === "duration" ? Number(value) : value, 2, key)[1]
+                [key]: validateField(value, 2, key)[1]
             }))
         }
 
