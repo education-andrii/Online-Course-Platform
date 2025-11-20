@@ -13,12 +13,12 @@ import getAutorsArray from '../../helpers/getAutorsArray.ts';
 
 import styles from './Courses.module.scss';
 
-interface Authors {
+export interface AuthorsType {
     id: string;
     name: string;
 }
 
-interface Courses {
+export interface CoursesType {
     id: string;
     title: string;
     description: string;
@@ -28,8 +28,8 @@ interface Courses {
 }
 
 interface Props {
-    authors?: Authors[]
-    courses?: Courses[]
+    authors?: AuthorsType[]
+    courses?: CoursesType[]
 }
 
 const Courses: React.FC<Props> = ({ authors, courses }) => {

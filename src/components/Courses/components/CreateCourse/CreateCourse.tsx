@@ -15,6 +15,7 @@ import getCourseDuration from "../../../../helpers/getCourseDuration";
 import validateField from "../../../../helpers/validateField";
 
 import styles from './CreateCourse.module.scss'
+import formatCreationDate from "../../../../helpers/formatCreationDate";
 
 // const forbiddenSymbols = /[@#$%^&]/
 
@@ -33,7 +34,26 @@ interface errorsObject {
     author?: string;
 }
 
-const CreateCourse: React.FC = () => {
+// type CreatedCoursesObject = {
+//     id: string;
+//     title: string;
+//     description: string;
+//     creationDate: string;
+//     duration: string;
+//     authors: string[];
+// }
+
+// type CreatedCoursesAuthorsObject = {
+//     id: string;
+//     name: string;
+// }
+
+interface Props {
+    onDataSubmit: Function;
+}
+
+
+const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
     const [formValues, setFormValues] = useState({
         title: '',
@@ -110,6 +130,19 @@ const CreateCourse: React.FC = () => {
         setIsInputValid(newValidationState)
 
         if (Object.values(newValidationState).every(element => element === true)) {
+
+            // Course transfer to App
+            const newCourse = {
+                id: '123',
+                title: title,
+                description: description,
+                creationDate: formatCreationDate(new Date().toString()),
+                duration: Number(duration),
+                authors: ['124343', '343433']
+            }
+
+            onDataSubmit(newCourse)
+
             event.currentTarget.reset();
             setFormValues({
                 title: '',
