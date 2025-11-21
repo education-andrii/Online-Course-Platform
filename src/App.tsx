@@ -25,10 +25,11 @@ function App() {
 
   const [createdCourses, setCreatedCourses] = useState<CreatedCourses>(mockedCoursesList)
 
-  const [createdCoursesAuthors, setCreatedCoursesAuthors] = useState<CreatedCoursesAuthors>([])
+  const [createdCoursesAuthors, setCreatedCoursesAuthors] = useState<CreatedCoursesAuthors>(mockedAuthorsList)
 
-  const handleCoursesData = (newCourse: CreatedCourses[number]) => {
+  const handleCoursesData = (newCourse: CreatedCourses[number], newAuthor: CreatedCoursesAuthors[number]) => {
     setCreatedCourses((prevCourses) => ([...prevCourses, newCourse]))
+    setCreatedCoursesAuthors((prevAuthors) => ([...prevAuthors, newAuthor]))
   }
 
   let isEmpty: boolean = createdCourses.length === 0;
@@ -42,7 +43,7 @@ function App() {
       <div className="App">
         <Header></Header>
         <Routes>
-          <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={mockedAuthorsList} courses={createdCourses}></Courses>} />
+          <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}></Courses>} />
           <Route path='/course-info' element={<CourseInfo id={'de5aaa59-90f5-4dbc-b8a9-aaf205c551ba'}
             title={'JavaScript'}
             description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsumhas been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'}

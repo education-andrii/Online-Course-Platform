@@ -1,15 +1,15 @@
-function formatCreationDate(date: string): string {
-    return date.replace(/\//g, '.')
+function formatCreationDate(dateString: string): string {
+    // return date.replace(/\//g, '.')
 
-    // const date = new Date(dateString)
+    const date = new Date(dateString)
 
-    // const day = date.getDate().toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
 
-    // const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
 
-    // const year = date.getFullYear();
+    const year = date.getFullYear();
 
-    // return `${day}/${month}/${year}`
+    return `${day}/${month}/${year}`
 
 }
 export default formatCreationDate;

@@ -17,6 +17,9 @@ import validateField from "../../../../helpers/validateField";
 import styles from './CreateCourse.module.scss'
 import formatCreationDate from "../../../../helpers/formatCreationDate";
 
+import { v4 as uuidv4 } from 'uuid';
+
+
 // const forbiddenSymbols = /[@#$%^&]/
 
 export interface FormData {
@@ -132,16 +135,21 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         if (Object.values(newValidationState).every(element => element === true)) {
 
             // Course transfer to App
+
+            const newAuthor = {
+                id: uuidv4(),
+                name: author
+            }
             const newCourse = {
-                id: '123',
+                id: uuidv4(),
                 title: title,
                 description: description,
                 creationDate: formatCreationDate(new Date().toString()),
                 duration: Number(duration),
-                authors: ['124343', '343433']
+                authors: [newAuthor.id]
             }
 
-            onDataSubmit(newCourse)
+            onDataSubmit(newCourse, newAuthor)
 
             event.currentTarget.reset();
             setFormValues({

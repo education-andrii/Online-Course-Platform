@@ -8,7 +8,6 @@ import EmptyCourseList from '../EmptyCourseList/EmptyCourseList.tsx';
 import { BUTTON_ADD_NEW_COURSE_TEXT } from '../../constants.ts';
 
 import getCourseDuration from '../../helpers/getCourseDuration.ts';
-import formatCreationDate from '../../helpers/formatCreationDate.ts';
 import getAutorsArray from '../../helpers/getAutorsArray.ts';
 
 import styles from './Courses.module.scss';
@@ -50,7 +49,7 @@ const Courses: React.FC<Props> = ({ authors, courses }) => {
                                     id={course.id}
                                     title={course.title}
                                     description={course.description}
-                                    creationDate={formatCreationDate(course.creationDate)}
+                                    creationDate={course.creationDate}
                                     duration={getCourseDuration(course.duration)}
                                     authors={courseAuthors.join(', ')} />
                             </li>
