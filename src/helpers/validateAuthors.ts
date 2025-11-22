@@ -1,4 +1,10 @@
-const validateAuthors: Function = (value: string, minLength: number, maxLength: number) => {
+import { AuthorsType } from "../components/Courses/Courses";
+const validateAuthors: Function = (value: string, minLength: number, maxLength: number, allAuthors?: AuthorsType[], addedToCourse?: AuthorsType[]) => {
+    if (addedToCourse && addedToCourse.length !== 0) {
+        return [true, '']
+    } else if (allAuthors && allAuthors.length !== 0) {
+        return [true, '']
+    }
     if (!value.trim()) {
         return [false, `Author Name is required`]
 
@@ -7,7 +13,10 @@ const validateAuthors: Function = (value: string, minLength: number, maxLength: 
 
     } else if (value.trim().length > maxLength) {
         return [false, `There should be no more than ${maxLength} characters`]
-    } else {
+    } else if (allAuthors && addedToCourse && allAuthors?.length === 0 && addedToCourse?.length === 0) {
+        return [false, 'Author Name is required']
+    }
+    else {
         return [true, '']
     }
 }

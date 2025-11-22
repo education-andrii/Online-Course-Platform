@@ -69,6 +69,8 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
     const [addedToCourse, setAddedToCourse] = useState<AuthorsType[]>([])
 
+    const [areAuthorsValid, setAreAuthorsValid] = useState<boolean>(true);
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = event.target
 
@@ -146,6 +148,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 ...prev,
                 author: true
             }))
+            setAreAuthorsValid(true)
             //--------------------
         } else if (authorToDelete) {
             setAllAuthors((prev) => [
@@ -168,29 +171,24 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
 
         for (let [key, value] of entries) {
-            newValidationState[key] = key !== 'author' ? validateField(value, 2, key)[0] : validateField(value, 2, key, allAuthors, addedToCourse)[0] //validateAuthors(author, 2, 20)[0]
+            newValidationState[key] = key !== 'author' ? validateField(value, 2, key)[0] : validateAuthors(author, 2, 20, allAuthors, addedToCourse)[0] //validateAuthors(author, 2, 20)[0] validateField(value, 2, key, allAuthors, addedToCourse)[0]
 
             setErrorMessages((prev) => ({
                 ...prev,
-                [key]: key !== 'author' ? validateField(value, 2, key)[1] : validateField(value, 2, key, allAuthors, addedToCourse)[1] // validateAuthors(author, 2, 20)[1]
+                [key]: key !== 'author' ? validateField(value, 2, key)[1] : validateAuthors(author, 2, 20, allAuthors, addedToCourse)[1] // validateAuthors(author, 2, 20)[1]
             }))
         }
 
         setIsInputValid(newValidationState);
 
         if (addedToCourse.length === 0) {
-            setIsInputValid((prev) => ({
-                ...prev,
-                author: false
-            }))
+            setAreAuthorsValid(false)
         } else if (addedToCourse.length !== 0) {
-            setIsInputValid((prev) => ({
-                ...prev,
-                author: true
-            }))
+            setAreAuthorsValid(true)
         }
+        //&& (addedToCourse.length !== 0 && (newValidationState.author === false || newValidationState.author === true))
 
-        if (Object.values(newValidationState).every(element => element === true || newValidationState.author === false && addedToCourse.length !== 0)) {
+        if (Object.values(newValidationState).every(element => element === true) && areAuthorsValid) {
 
             // Course transfer to App
 
@@ -277,7 +275,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                         <li key={authorItem.id}><AuthorItem authorItem={authorItem} deleteAuthor onButtonClick={() => handleAuthorAddDelete(authorItem.id)} /></li>
                                     ))}
                                 </ul>
-                                {<p style={{ color: 'red' }} className={isInputValid.author ? styles.hidden : styles.active}>{isInputValid.author || "There should be at least one author in the course"}</p>}
+                                {<p style={{ color: 'red' }} className={areAuthorsValid ? styles.hidden : styles.active}>{areAuthorsValid || "There should be at least one author in the course"}</p>}
                             </div>
                         </div>
                     </div>
