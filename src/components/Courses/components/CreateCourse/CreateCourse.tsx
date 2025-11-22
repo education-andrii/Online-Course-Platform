@@ -13,9 +13,12 @@ import { BUTTON_CREATE_AUTHOR_TEXT } from "../../../../constants";
 
 import getCourseDuration from "../../../../helpers/getCourseDuration";
 import validateField from "../../../../helpers/validateField";
+import validateAuthors from "../../../../helpers/validateAuthors";
 
 import styles from './CreateCourse.module.scss'
 import formatCreationDate from "../../../../helpers/formatCreationDate";
+
+import { AuthorsType } from "../../Courses";
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -36,20 +39,6 @@ interface errorsObject {
     duration?: string;
     author?: string;
 }
-
-// type CreatedCoursesObject = {
-//     id: string;
-//     title: string;
-//     description: string;
-//     creationDate: string;
-//     duration: string;
-//     authors: string[];
-// }
-
-// type CreatedCoursesAuthorsObject = {
-//     id: string;
-//     name: string;
-// }
 
 interface Props {
     onDataSubmit: Function;
@@ -75,6 +64,8 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
     })
 
     const [errorMessages, setErrorMessages] = useState<errorsObject>({})
+
+    const [authorsArr, setAuthorsArr] = useState<AuthorsType[]>([])
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = event.target
@@ -114,6 +105,29 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }
     }
 
+    // Handler for an Author creation
+
+    const handleAuthorCreation = () => {
+
+        setErrorMessages((prev) => ({
+            ...prev,
+            author: validateAuthors(author, 2, 20)[1]
+        }))
+        setIsInputValid((prev) => ({ ...prev, author: validateAuthors(author, 2, 20)[0] }))
+        if (validateAuthors(author, 2, 20)[0]) {
+            setAuthorsArr((prev) => ([...prev, { id: uuidv4(), name: author }]))
+
+            setFormValues((prev) => ({
+                ...prev,
+                author: ''
+            }))
+        } else {
+            return
+        }
+    }
+
+    // Handler for a Course creation
+
     const handleCreateCourse = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -130,7 +144,8 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
             }))
         }
 
-        setIsInputValid(newValidationState)
+        setIsInputValid(newValidationState);
+
 
         if (Object.values(newValidationState).every(element => element === true)) {
 
@@ -198,21 +213,22 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                     <h3>Authors</h3>
                                     <div>
                                         <Input id="author" name="author" value={author} withValidation onChange={(e) => handleChange(e)} labelText="Author Name" isValid={isInputValid.author} errorMessage={errorMessages.author}>
-                                            <Button buttonText={BUTTON_CREATE_AUTHOR_TEXT} />
+                                            <Button onClick={handleAuthorCreation} buttonText={BUTTON_CREATE_AUTHOR_TEXT} />
                                         </Input>
                                     </div>
                                 </div>
                                 <div className={styles.authorsList}>
                                     <h4>Authors List</h4>
                                     <ul>
-                                        <li><AuthorItem name="Author One" /></li>
-                                        <li><AuthorItem name="Author Two" /></li>
+                                        {authorsArr.map((author) => (
+                                            <li key={author.id}><AuthorItem name={author.name} addAuthor /></li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div className={styles.right}>
-                            <div>
+                            <div className={styles.courseAuthors}>
                                 <h3>Course Authors</h3>
                                 <p>Author list is empty</p>
                             </div>

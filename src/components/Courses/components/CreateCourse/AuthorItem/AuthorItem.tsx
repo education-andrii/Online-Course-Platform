@@ -4,14 +4,16 @@ import styles from './AuthorItem.module.scss'
 
 interface Props {
     name: string;
+    addAuthor?: boolean;
+    deleteAuthor?: boolean;
 }
 
-const AuthorItem: React.FC<Props> = ({ name }) => {
+const AuthorItem: React.FC<Props> = ({ name, addAuthor, deleteAuthor }) => {
     return (
         <div className={styles.wrapper}>
             <p>{name}</p>
-            <button><img src={add} alt="Add" /></button>
-            <button><img src={remove} alt="Remove" /></button>
+            {addAuthor && <button type='button'><img src={add} alt="Add" /></button>}
+            {deleteAuthor && <button type='button'><img src={remove} alt="Remove" /></button>}
         </div>
     )
 }
