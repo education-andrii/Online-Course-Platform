@@ -13,6 +13,12 @@
         flex-direction: column;
         gap: vars.$main-gap;
 
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
         .input {
             width: 100%;
         }
@@ -99,11 +105,26 @@
                 .right {
                     align-self: center;
 
-                    &>div {
+                    .courseAuthors {
+                        max-width: 186px;
                         text-align: center;
                         display: flex;
+                        align-items: center;
                         flex-direction: column;
                         gap: vars.$secondary-gap;
+                        list-style: none;
+
+                        .active {
+                            opacity: 1;
+                        }
+
+                        .hidden {
+                            opacity: 0;
+                        }
+
+                        p {
+                            flex-wrap: wrap;
+                        }
                     }
                 }
             }

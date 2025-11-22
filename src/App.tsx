@@ -27,9 +27,9 @@ function App() {
 
   const [createdCoursesAuthors, setCreatedCoursesAuthors] = useState<CreatedCoursesAuthors>(mockedAuthorsList)
 
-  const handleCoursesData = (newCourse: CreatedCourses[number], newAuthor: CreatedCoursesAuthors[number]) => {
+  const handleCoursesData = (newCourse: CreatedCourses[number], newAuthors: CreatedCoursesAuthors) => {
     setCreatedCourses((prevCourses) => ([...prevCourses, newCourse]))
-    setCreatedCoursesAuthors((prevAuthors) => ([...prevAuthors, newAuthor]))
+    setCreatedCoursesAuthors((prevAuthors) => ([...prevAuthors, ...newAuthors]))
   }
 
   let isEmpty: boolean = createdCourses.length === 0;

@@ -65,7 +65,9 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
     const [errorMessages, setErrorMessages] = useState<errorsObject>({})
 
-    const [authorsArr, setAuthorsArr] = useState<AuthorsType[]>([])
+    const [allAuthors, setAllAuthors] = useState<AuthorsType[]>([]);
+
+    const [addedToCourse, setAddedToCourse] = useState<AuthorsType[]>([])
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = event.target
@@ -115,7 +117,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }))
         setIsInputValid((prev) => ({ ...prev, author: validateAuthors(author, 2, 20)[0] }))
         if (validateAuthors(author, 2, 20)[0]) {
-            setAuthorsArr((prev) => ([...prev, { id: uuidv4(), name: author }]))
+            setAllAuthors((prev) => ([...prev, { id: uuidv4(), name: author }]))
 
             setFormValues((prev) => ({
                 ...prev,
@@ -126,7 +128,37 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }
     }
 
-    // Handler for a Course creation
+    // Handler for adding AuthorItem to the Course Authors section
+
+    const handleAuthorAddDelete = (id: string) => {
+        const authorToAdd = allAuthors.find(a => a.id === id);
+        const authorToDelete = addedToCourse.find(a => a.id === id);
+        if (authorToAdd) {
+            setAddedToCourse((prev) => [
+                ...prev,
+                authorToAdd
+            ])
+            setAllAuthors((prev) => [
+                ...prev.filter(a => a.id !== id)
+            ])
+            // Logic for validation
+            setIsInputValid((prev) => ({
+                ...prev,
+                author: true
+            }))
+            //--------------------
+        } else if (authorToDelete) {
+            setAllAuthors((prev) => [
+                ...prev,
+                authorToDelete
+            ])
+            setAddedToCourse((prev) => [
+                ...prev.filter(a => a.id !== id)
+            ])
+        }
+    }
+
+    // Handler for the Course creation
 
     const handleCreateCourse = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -136,37 +168,47 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
 
         for (let [key, value] of entries) {
-            newValidationState[key] = validateField(value, 2, key)[0]
+            newValidationState[key] = key !== 'author' ? validateField(value, 2, key)[0] : validateField(value, 2, key, allAuthors, addedToCourse)[0] //validateAuthors(author, 2, 20)[0]
 
             setErrorMessages((prev) => ({
                 ...prev,
-                [key]: validateField(value, 2, key)[1]
+                [key]: key !== 'author' ? validateField(value, 2, key)[1] : validateField(value, 2, key, allAuthors, addedToCourse)[1] // validateAuthors(author, 2, 20)[1]
             }))
         }
 
         setIsInputValid(newValidationState);
 
+        if (addedToCourse.length === 0) {
+            setIsInputValid((prev) => ({
+                ...prev,
+                author: false
+            }))
+        } else if (addedToCourse.length !== 0) {
+            setIsInputValid((prev) => ({
+                ...prev,
+                author: true
+            }))
+        }
 
-        if (Object.values(newValidationState).every(element => element === true)) {
+        if (Object.values(newValidationState).every(element => element === true || newValidationState.author === false && addedToCourse.length !== 0)) {
 
             // Course transfer to App
 
-            const newAuthor = {
-                id: uuidv4(),
-                name: author
-            }
             const newCourse = {
                 id: uuidv4(),
                 title: title,
                 description: description,
                 creationDate: formatCreationDate(new Date().toString()),
                 duration: Number(duration),
-                authors: [newAuthor.id]
+                authors: addedToCourse.map((i) => i.id)
             }
 
-            onDataSubmit(newCourse, newAuthor)
+            onDataSubmit(newCourse, addedToCourse);
 
             event.currentTarget.reset();
+            setAddedToCourse([]);
+            setAllAuthors([])
+
             setFormValues({
                 title: '',
                 description: '',
@@ -220,8 +262,8 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                 <div className={styles.authorsList}>
                                     <h4>Authors List</h4>
                                     <ul>
-                                        {authorsArr.map((author) => (
-                                            <li key={author.id}><AuthorItem name={author.name} addAuthor /></li>
+                                        {allAuthors.map((authorItem) => (
+                                            <li key={authorItem.id}><AuthorItem authorItem={authorItem} addAuthor onButtonClick={() => handleAuthorAddDelete(authorItem.id)} /></li>
                                         ))}
                                     </ul>
                                 </div>
@@ -230,7 +272,12 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                         <div className={styles.right}>
                             <div className={styles.courseAuthors}>
                                 <h3>Course Authors</h3>
-                                <p>Author list is empty</p>
+                                <ul>
+                                    {addedToCourse.length === 0 ? <li>Author list is empty</li> : addedToCourse.map((authorItem) => (
+                                        <li key={authorItem.id}><AuthorItem authorItem={authorItem} deleteAuthor onButtonClick={() => handleAuthorAddDelete(authorItem.id)} /></li>
+                                    ))}
+                                </ul>
+                                {<p style={{ color: 'red' }} className={isInputValid.author ? styles.hidden : styles.active}>{isInputValid.author || "There should be at least one author in the course"}</p>}
                             </div>
                         </div>
                     </div>
