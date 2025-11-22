@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
@@ -47,6 +47,8 @@ interface Props {
 
 const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
+    const navigate = useNavigate()
+
     const [formValues, setFormValues] = useState({
         title: '',
         description: '',
@@ -71,6 +73,8 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
     const [areAuthorsValid, setAreAuthorsValid] = useState<boolean>(true);
 
+    //Handler for assigning values ​​to a state variable 
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { name, value } = event.target
 
@@ -78,7 +82,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
             ...prev,
             [name]: true
         }))
-
+        //Logic for "onfly" duration input field validation
         if (name === "duration") {
             setFormValues((prev) => ({
                 ...prev,
@@ -100,7 +104,8 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 setErrorMessages(prev => ({ ...prev, duration: '', }))
             }
 
-        } else {
+        }//-----------------------
+        else {
             setFormValues((prev) => ({
                 ...prev,
                 [name]: value
@@ -180,18 +185,17 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }
 
         setIsInputValid(newValidationState);
-
+        //Additional logic for Course Authors
         if (addedToCourse.length === 0) {
             setAreAuthorsValid(false)
         } else if (addedToCourse.length !== 0) {
             setAreAuthorsValid(true)
         }
-        //&& (addedToCourse.length !== 0 && (newValidationState.author === false || newValidationState.author === true))
+        //------------------------------
 
         if (Object.values(newValidationState).every(element => element === true) && areAuthorsValid) {
 
-            // Course transfer to App
-
+            // Transfer of the latest course data to the App
             const newCourse = {
                 id: uuidv4(),
                 title: title,
@@ -202,7 +206,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
             }
 
             onDataSubmit(newCourse, addedToCourse);
-
+            //----------------------------------------
             event.currentTarget.reset();
             setAddedToCourse([]);
             setAllAuthors([])
@@ -219,6 +223,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 duration: true,
                 author: true,
             })
+            navigate('/')
         }
     }
 
