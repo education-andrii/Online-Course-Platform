@@ -28,10 +28,10 @@ function App() {
   const [createdCoursesAuthors, setCreatedCoursesAuthors] = useState<CreatedCoursesAuthors>(mockedAuthorsList)
 
   const [clickedCourse, setClickedCourse] = useState<CoursesType>({
-    id: 'id',
+    id: '',
     title: '',
-    description: 'description',
-    creationDate: 'creationDate',
+    description: '',
+    creationDate: '',
     duration: 0,
     authors: []
   })
