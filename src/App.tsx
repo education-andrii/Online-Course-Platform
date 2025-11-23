@@ -27,29 +27,34 @@ function App() {
 
   const [createdCoursesAuthors, setCreatedCoursesAuthors] = useState<CreatedCoursesAuthors>(mockedAuthorsList)
 
+  const [clickedCourse, setClickedCourse] = useState<CoursesType>({
+    id: 'id',
+    title: '',
+    description: 'description',
+    creationDate: 'creationDate',
+    duration: 0,
+    authors: []
+  })
+
   const handleCoursesData = (newCourse: CreatedCourses[number], newAuthors: CreatedCoursesAuthors) => {
     setCreatedCourses((prevCourses) => ([...prevCourses, newCourse]))
     setCreatedCoursesAuthors((prevAuthors) => ([...prevAuthors, ...newAuthors]))
   }
 
-  let isEmpty: boolean = createdCourses.length === 0;
-  // if (mockedCoursesList.length === 0) {
-  //   isEmpty = true;
-  // }
+  const handleCourseInfoData = (course: CoursesType) => {
+    setClickedCourse(course)
+  }
 
-  // alert(createdCourses[0])
+  let isEmpty: boolean = createdCourses.length === 0;
+
   return (
     <Router>
       <div className="App">
         <Header></Header>
         <Routes>
-          <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}></Courses>} />
-          <Route path='/course-info' element={<CourseInfo id={'de5aaa59-90f5-4dbc-b8a9-aaf205c551ba'}
-            title={'JavaScript'}
-            description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsumhas been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'}
-            creationDate={'08.03.2021'}
-            duration={'02:40 hours'}
-            authors={'Nicolas Kim, Valentina Larina'} />} />
+          <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
+            onDataSubmit={handleCourseInfoData}></Courses>} />
+          <Route path='/course-info' element={<CourseInfo course={clickedCourse} />} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/login' element={<Login />} />
           <Route path='/create-course' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
