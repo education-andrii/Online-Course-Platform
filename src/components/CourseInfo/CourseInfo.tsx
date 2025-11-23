@@ -3,21 +3,18 @@ import { Link } from 'react-router-dom';
 import { BUTTON_BACK_TEXT } from '../../constants.ts'
 import Button from '../../common/Button/Button.tsx';
 
+import { CoursesType } from "../Courses/Courses.tsx";
+
 import styles from './CourseInfo.module.scss';
 
 interface Props {
-    id: string;
-    title: string;
-    description: string;
-    creationDate: string;
-    duration: string;
-    authors: string;
+    course: CoursesType
 }
 
-const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Course 1 description", creationDate = "01/01/2025", duration = "60", authors = "Nicolas Kim" }) => {
-    const text: string = duration;
-    const [firstPart, secondPart] = text.split(' ');
-
+const CourseInfo: React.FC<Props> = ({ course }) => {
+    const { id, title, description, creationDate, duration, authors } = course
+    const text: string = duration.toString();
+    const [firstPart, secondPart, thirdPart, fourthPart] = text.split(' ');
     return (
         <div className={styles.courseInfoWrapper}>
             <h1>{title}</h1>
@@ -37,7 +34,7 @@ const CourseInfo: React.FC<Props> = ({ id, title = "Course 1", description = "Co
                     <ul className={styles.values}>
                         <li>{id}</li>
                         <li>
-                            <b>{firstPart}</b> {secondPart}
+                            {!fourthPart ? <><b>{firstPart}</b> {secondPart}</> : <><b>{firstPart} {secondPart}</b> {thirdPart} {fourthPart}</>}
                         </li>
                         <li>{creationDate}</li>
                         <li>{authors}</li>
