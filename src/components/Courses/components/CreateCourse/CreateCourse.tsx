@@ -135,7 +135,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }
     }
 
-    // Handler for adding AuthorItem to the Course Authors section
+    // Handler for adding or deleting AuthorItem to or from the Course Authors section
 
     const handleAuthorAddDelete = (id: string) => {
         const authorToAdd = allAuthors.find(a => a.id === id);
@@ -185,7 +185,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }
 
         setIsInputValid(newValidationState);
-        //Additional logic for Course Authors
+        //Additional validation for Course Authors
         if (addedToCourse.length === 0) {
             setAreAuthorsValid(false)
         } else if (addedToCourse.length !== 0) {

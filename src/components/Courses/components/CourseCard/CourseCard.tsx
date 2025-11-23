@@ -5,15 +5,20 @@ import Button from '../../../../common/Button/Button';
 import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
 
 interface Props {
-    id: string;
-    title: string;
-    description: string;
-    creationDate: string;
-    duration: string;
-    authors: string;
+    course: {
+        id: string,
+        title: string,
+        description: string,
+        creationDate: string,
+        duration: string,
+        authors: string
+    }
+    onDataSubmit: Function
 }
 
-const CourseCard: React.FC<Props> = ({ id, title = "Course Title", description = "Course Description", creationDate = "01/01/2025", duration = "60", authors = "Nicolas Kim" }) => {
+const CourseCard: React.FC<Props> = ({ course, onDataSubmit }) => {
+    const { id, title, description, creationDate, duration, authors } = course
+
     return (
         <div className='courseCard' id={id}>
             <div className="left-line"></div>
@@ -29,7 +34,7 @@ const CourseCard: React.FC<Props> = ({ id, title = "Course Title", description =
                             <li><b>Duration:</b> {duration}</li>
                             <li><b>Created:</b> {creationDate}</li>
                         </ul>
-                        <Link to='/course-info'><Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px'></Button></Link>
+                        <Link to='/course-info'><Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px' onClick={() => onDataSubmit(course)}></Button></Link>
                     </div>
                 </div>
             </div>

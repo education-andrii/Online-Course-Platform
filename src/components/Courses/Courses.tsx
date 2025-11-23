@@ -29,9 +29,10 @@ export interface CoursesType {
 interface Props {
     authors?: AuthorsType[]
     courses?: CoursesType[]
+    onDataSubmit: Function
 }
 
-const Courses: React.FC<Props> = ({ authors, courses }) => {
+const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
     if (courses !== undefined && authors !== undefined) {
         return (
             <div className={styles.mainCoursesContainer}>
@@ -42,16 +43,20 @@ const Courses: React.FC<Props> = ({ authors, courses }) => {
                 <ul className={styles.coursesList}>
                     {courses.map((course, index) => {
                         let courseAuthors: string[] = getAutorsArray(authors, course.authors)
-
+                        let newCourse = {
+                            id: course.id,
+                            title: course.title,
+                            description: course.description,
+                            creationDate: course.creationDate,
+                            duration: getCourseDuration(course.duration),
+                            authors: courseAuthors.join(', ')
+                        }
                         return (
                             <li key={course.id || index} className={styles.courseCard}>
                                 <CourseCard
-                                    id={course.id}
-                                    title={course.title}
-                                    description={course.description}
-                                    creationDate={course.creationDate}
-                                    duration={getCourseDuration(course.duration)}
-                                    authors={courseAuthors.join(', ')} />
+                                    course={newCourse}
+                                    onDataSubmit={onDataSubmit}
+                                />
                             </li>
                         )
                     })}
