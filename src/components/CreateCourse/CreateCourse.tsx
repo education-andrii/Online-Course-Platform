@@ -20,7 +20,6 @@ import formatCreationDate from "../../helpers/formatCreationDate";
 
 import { AuthorsType } from "../Courses/Courses";
 
-import { v4 as uuidv4 } from 'uuid';
 
 
 // const forbiddenSymbols = /[@#$%^&]/
