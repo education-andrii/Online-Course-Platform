@@ -8,7 +8,7 @@ import EmptyCourseList from '../EmptyCourseList/EmptyCourseList.tsx';
 import { BUTTON_ADD_NEW_COURSE_TEXT } from '../../constants.ts';
 
 import getCourseDuration from '../../helpers/getCourseDuration.ts';
-import getAutorsArray from '../../helpers/getAutorsArray.ts';
+import getAuthorsNames from '../../helpers/getAuthorsNames.ts';
 
 import styles from './Courses.module.scss';
 import { useEffect, useState } from 'react';
@@ -71,7 +71,7 @@ const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
                 {displayedCourses.length === 0 ?
                     <h1>No matches found...</h1>
                     : displayedCourses.map((course, index) => {
-                        let courseAuthors: string[] = getAutorsArray(authors, course.authors)
+                        let courseAuthors: string[] = getAuthorsNames(authors, course.authors)
                         let newCourse = {
                             id: course.id,
                             title: course.title,
