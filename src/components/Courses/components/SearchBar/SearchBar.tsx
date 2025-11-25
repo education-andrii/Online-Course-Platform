@@ -26,10 +26,16 @@ const SearchBar: React.FC<Props> = ({ handleSearch }) => {
             handleSearch(searchTerm)
         }
     }
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            handleClick()
+        }
+    }
 
     return (
         <div className={styles.search}>
-            <Input value={searchTerm} onChange={handleChange} placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} width='400px' height='50px'></Input>
+            <Input value={searchTerm} onChange={handleChange} onKeyDown={handleKeyDown} placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} width='400px' height='50px'></Input>
             <Button buttonText={BUTTON_SEARCH_TEXT} onClick={handleClick} width='148px' height='50px' />
         </div>
     )

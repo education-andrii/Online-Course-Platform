@@ -13,6 +13,7 @@ interface Props {
     placeholder?: string;
     onClick?: React.MouseEventHandler;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
     labelText?: string;
     required?: boolean;
     isValid?: boolean;
@@ -22,12 +23,12 @@ interface Props {
     height?: string;
 }
 
-const Input: React.FC<Props> = ({ className, id, name, value, withValidation, type = 'text', placeholder = INPUT_INPUT_TEXT_PLACEHOLDER, onClick, onChange, labelText, isValid, children, errorMessage = `${labelText} is required`, width = '400px', height = '50px' }) => {
+const Input: React.FC<Props> = ({ className, id, name, value, withValidation, type = 'text', placeholder = INPUT_INPUT_TEXT_PLACEHOLDER, onClick, onChange, onKeyDown, labelText, isValid, children, errorMessage = `${labelText} is required`, width = '400px', height = '50px' }) => {
     return (
         <div className='inputContainer'>
             <label className='label' htmlFor={id}>{labelText}</label>
             <div>
-                <input type={type} className={`input ${className ?? ""} ${withValidation && (isValid ? '' : 'input-error')}`} id={id} name={name} value={value} placeholder={placeholder} onClick={onClick} onChange={onChange} style={{ width, height }} />
+                <input type={type} className={`input ${className ?? ""} ${withValidation && (isValid ? '' : 'input-error')}`} id={id} name={name} value={value} placeholder={placeholder} onClick={onClick} onChange={onChange} onKeyDown={onKeyDown} style={{ width, height }} />
                 {withValidation && <p className={`input-error-message ${isValid ? 'hidden' : 'visible'}`}>{errorMessage}</p>}
                 {children}
             </div>
