@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
@@ -285,7 +285,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                     </div>
                 </div>
                 <div className={styles.buttonsContainer}>
-                    <Link to="/"><Button buttonText={BUTTON_CANCEL_TEXT} /></Link>
+                    <a href="/"><Button buttonText={BUTTON_CANCEL_TEXT} /></a>
                     <Button type="submit" buttonText={BUTTON_CREATE_COURSE_TEXT} />
                 </div>
 
