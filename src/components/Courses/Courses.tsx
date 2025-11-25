@@ -71,14 +71,14 @@ const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
                 {displayedCourses.length === 0 ?
                     <h1>No matches found...</h1>
                     : displayedCourses.map((course, index) => {
-                        let courseAuthors: string[] = getAuthorsNames(authors, course.authors)
+                        let courseAuthors: string = getAuthorsNames(authors, course.authors)
                         let newCourse = {
                             id: course.id,
                             title: course.title,
                             description: course.description,
                             creationDate: course.creationDate,
                             duration: getCourseDuration(course.duration),
-                            authors: courseAuthors.join(', ')
+                            authors: courseAuthors
                         }
                         return (
                             <li key={course.id || index} className={styles.courseCard}>
