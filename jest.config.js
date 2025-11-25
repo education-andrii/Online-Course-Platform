@@ -29,7 +29,7 @@ export default {
   },
 
   transformIgnorePatterns: [
-    "node_modules/(?!(hex-rgb))"
+    "node_modules/(?!(hex-rgb)|uuid)"
   ],
 
   // Indicates which provider should be used to instrument code for coverage
