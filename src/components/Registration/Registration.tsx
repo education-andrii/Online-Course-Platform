@@ -1,7 +1,7 @@
 import Authentication from '../Authentication/Authentication';
 import Input from '../../common/Input/Input';
 
-import { BUTTON_REGISTRATION_TEXT } from '../../constants';
+// import { BUTTON_REGISTRATION_TEXT } from '../../constants';
 import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 
 import { useState } from 'react';

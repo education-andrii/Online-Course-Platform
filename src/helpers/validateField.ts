@@ -9,7 +9,7 @@ const validateField = (value: string | number, minLength: number = 0, key?: stri
         return [false, `${inputName} is required`]
 
     } else if (key === 'duration' && Number(value) <= 0) {
-        return [false, 'The value should be more than 0'];
+        return [false, 'duration is required and should be greater than 0'];
 
     } else {
         return [true, '']
