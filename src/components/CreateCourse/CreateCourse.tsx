@@ -266,7 +266,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                     <h4>Authors List</h4>
                                     <ul>
                                         {allAuthors.map((authorItem) => (
-                                            <li key={authorItem.id}><AuthorItem authorItem={authorItem} addAuthor onButtonClick={() => handleAuthorAddDelete(authorItem.id)} /></li>
+                                            <li key={authorItem.id}><AuthorItem authorItem={authorItem} addAuthor onButtonClick={handleAuthorAddDelete} /></li>
                                         ))}
                                     </ul>
                                 </div>
@@ -277,7 +277,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                 <h3>Course Authors</h3>
                                 <ul>
                                     {addedToCourseAuthors.length === 0 ? <li>Author list is empty</li> : addedToCourseAuthors.map((authorItem) => (
-                                        <li key={authorItem.id}><AuthorItem authorItem={authorItem} deleteAuthor onButtonClick={() => handleAuthorAddDelete(authorItem.id)} /></li>
+                                        <li key={authorItem.id}><AuthorItem authorItem={authorItem} deleteAuthor onButtonClick={handleAuthorAddDelete} /></li>
                                     ))}
                                 </ul>
                                 {<p style={{ color: 'red' }} className={areAuthorsAdded ? styles.hidden : styles.active}>{areAuthorsAdded || "There should be at least one author in the course"}</p>}
