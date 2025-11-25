@@ -15,4 +15,10 @@
     flex-direction: column;
     gap: 30px;
     margin: 30px 0;
+
+    h1 {
+        justify-self: center;
+        align-self: center;
+        margin-top: 5%;
+    }
 }

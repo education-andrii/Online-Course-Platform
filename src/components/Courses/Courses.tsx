@@ -11,6 +11,7 @@ import getCourseDuration from '../../helpers/getCourseDuration.ts';
 import getAutorsArray from '../../helpers/getAutorsArray.ts';
 
 import styles from './Courses.module.scss';
+import { useEffect, useState } from 'react';
 
 export interface AuthorsType {
     id: string;
@@ -27,21 +28,49 @@ export interface CoursesType {
 }
 
 interface Props {
-    authors?: AuthorsType[]
-    courses?: CoursesType[]
+    authors: AuthorsType[]
+    courses: CoursesType[]
     onDataSubmit: Function
 }
 
 const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
-    if (courses !== undefined && authors !== undefined) {
-        return (
-            <div className={styles.mainCoursesContainer}>
-                <div className={styles.mainFunctional}>
-                    <SearchBar />
-                    <Link to="/create-course"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
-                </div>
-                <ul className={styles.coursesList}>
-                    {courses.map((course, index) => {
+    const [displayedCourses, setDisplayedCourses] = useState<CoursesType[]>([]);
+    //For async data
+    useEffect(() => {
+        if (courses) {
+            setDisplayedCourses(courses)
+        }
+    }, [courses])
+    //------------
+
+    if (!courses || courses.length === 0) {
+        return <EmptyCourseList />
+    }
+
+    const handleSearch = (searchTerm: string) => {
+        const term = searchTerm.toLowerCase().trim() || '';
+        if (term === '') {
+            setDisplayedCourses(courses)
+            return;
+        }
+        const filteredCourses = courses.filter((course) => {
+            const titleTerm = course.title.toLowerCase().includes(term);
+            const idTerm = course.id.toLowerCase().includes(term);
+            return titleTerm || idTerm
+        })
+        setDisplayedCourses(filteredCourses)
+    }
+
+    return (
+        <div className={styles.mainCoursesContainer}>
+            <div className={styles.mainFunctional}>
+                <SearchBar handleSearch={handleSearch} />
+                <Link to="/create-course"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
+            </div>
+            <ul className={styles.coursesList}>
+                {displayedCourses.length === 0 ?
+                    <h1>No matches found...</h1>
+                    : displayedCourses.map((course, index) => {
                         let courseAuthors: string[] = getAutorsArray(authors, course.authors)
                         let newCourse = {
                             id: course.id,
@@ -59,13 +88,13 @@ const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
                                 />
                             </li>
                         )
-                    })}
-                </ul>
-            </div>
-        )
-    } else {
-        return <EmptyCourseList />
-    }
+                    })
+                }
+
+            </ul>
+        </div>
+    )
+
 
 }
 export default Courses;
