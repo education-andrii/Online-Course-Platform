@@ -1,5 +1,5 @@
-import add from '../../assets/Icons/Add.svg'
-import remove from '../../assets/Icons/Remove.svg'
+// import add from '../../assets/Icons/Add.svg'
+// import remove from '../../assets/Icons/Remove.svg'
 import styles from './AuthorItem.module.scss'
 
 interface Props {
@@ -17,8 +17,8 @@ const AuthorItem: React.FC<Props> = ({ author, addAuthor, deleteAuthor, onButton
     return (
         <div className={styles.wrapper} id={author.id}>
             <p>{author.name}</p>
-            {addAuthor && <button type='button' name={'Add author'} role='button' onClick={() => onButtonClick(author.id)}><img src={add} alt="Add" />Add author</button>}
-            {deleteAuthor && <button type='button' name={'Add author'} role='button' onClick={() => onButtonClick(author.id)}><img src={remove} alt="Remove" />Add author</button>}
+            {addAuthor && <button type='button' name='Add author' role='button' onClick={() => onButtonClick(author.id)}>Add author</button>}
+            {deleteAuthor && <button type='button' name='Delete author' role='button' onClick={() => onButtonClick(author.id)}>Delete author</button>}
         </div>
     )
 
