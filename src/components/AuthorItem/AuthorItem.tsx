@@ -18,7 +18,7 @@ const AuthorItem: React.FC<Props> = ({ author, addAuthor, deleteAuthor, onButton
         <div className={styles.wrapper} id={author.id}>
             <p>{author.name}</p>
             {addAuthor && <button type='button' name={'Add author'} role='button' onClick={() => onButtonClick(author.id)}><img src={add} alt="Add" />Add author</button>}
-            {deleteAuthor && <button type='button' name={'Remove author'} role='button' onClick={() => onButtonClick(author.id)}><img src={remove} alt="Remove" />Delete author</button>}
+            {deleteAuthor && <button type='button' name={'Add author'} role='button' onClick={() => onButtonClick(author.id)}><img src={remove} alt="Remove" />Add author</button>}
         </div>
     )
 
