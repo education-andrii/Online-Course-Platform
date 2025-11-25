@@ -124,7 +124,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }))
         setIsInputValid((prev) => ({ ...prev, author: validateAuthors(author, 2, 20)[0] }))
         if (validateAuthors(author, 2, 20)[0]) {
-            setAllAuthors((prev) => ([...prev, { id: uuidv4(), name: author }]))
+            setAllAuthors((prev) => ([...prev, { id: Math.random().toString(36).substring(2), name: author }]))
 
             setFormValues((prev) => ({
                 ...prev,
@@ -197,7 +197,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
             // Transfer of the latest course data to the App
             const newCourse = {
-                id: uuidv4(),
+                id: Math.random().toString(36).substring(2),
                 title: title,
                 description: description,
                 creationDate: formatCreationDate(new Date().toString()),
