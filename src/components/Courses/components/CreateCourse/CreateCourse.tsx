@@ -69,9 +69,9 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
     const [allAuthors, setAllAuthors] = useState<AuthorsType[]>([]);
 
-    const [addedToCourse, setAddedToCourse] = useState<AuthorsType[]>([])
+    const [addedToCourseAuthors, setAddedToCourseAuthors] = useState<AuthorsType[]>([])
 
-    const [areAuthorsValid, setAreAuthorsValid] = useState<boolean>(true);
+    const [areAuthorsAdded, setAreAuthorsAdded] = useState<boolean>(true);
 
     //Handler for assigning values ​​to a state variable 
 
@@ -139,9 +139,9 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
     const handleAuthorAddDelete = (id: string) => {
         const authorToAdd = allAuthors.find(a => a.id === id);
-        const authorToDelete = addedToCourse.find(a => a.id === id);
+        const authorToDelete = addedToCourseAuthors.find(a => a.id === id);
         if (authorToAdd) {
-            setAddedToCourse((prev) => [
+            setAddedToCourseAuthors((prev) => [
                 ...prev,
                 authorToAdd
             ])
@@ -153,14 +153,14 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 ...prev,
                 author: true
             }))
-            setAreAuthorsValid(true)
+            setAreAuthorsAdded(true)
             //--------------------
         } else if (authorToDelete) {
             setAllAuthors((prev) => [
                 ...prev,
                 authorToDelete
             ])
-            setAddedToCourse((prev) => [
+            setAddedToCourseAuthors((prev) => [
                 ...prev.filter(a => a.id !== id)
             ])
         }
@@ -176,24 +176,24 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
 
         for (let [key, value] of entries) {
-            newValidationState[key] = key !== 'author' ? validateField(value, 2, key)[0] : validateAuthors(author, 2, 20, allAuthors, addedToCourse)[0] //validateAuthors(author, 2, 20)[0] validateField(value, 2, key, allAuthors, addedToCourse)[0]
+            newValidationState[key] = key !== 'author' ? validateField(value, 2, key)[0] : validateAuthors(author, 2, 20, allAuthors, addedToCourseAuthors)[0] //validateAuthors(author, 2, 20)[0] validateField(value, 2, key, allAuthors, addedToCourse)[0]
 
             setErrorMessages((prev) => ({
                 ...prev,
-                [key]: key !== 'author' ? validateField(value, 2, key)[1] : validateAuthors(author, 2, 20, allAuthors, addedToCourse)[1] // validateAuthors(author, 2, 20)[1]
+                [key]: key !== 'author' ? validateField(value, 2, key)[1] : validateAuthors(author, 2, 20, allAuthors, addedToCourseAuthors)[1] // validateAuthors(author, 2, 20)[1]
             }))
         }
 
         setIsInputValid(newValidationState);
         //Additional validation for Course Authors
-        if (addedToCourse.length === 0) {
-            setAreAuthorsValid(false)
-        } else if (addedToCourse.length !== 0) {
-            setAreAuthorsValid(true)
+        if (addedToCourseAuthors.length === 0) {
+            setAreAuthorsAdded(false)
+        } else if (addedToCourseAuthors.length !== 0) {
+            setAreAuthorsAdded(true)
         }
         //------------------------------
 
-        if (Object.values(newValidationState).every(element => element === true) && areAuthorsValid) {
+        if (Object.values(newValidationState).every(element => element === true) && addedToCourseAuthors.length !== 0) {
 
             // Transfer of the latest course data to the App
             const newCourse = {
@@ -202,13 +202,13 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 description: description,
                 creationDate: formatCreationDate(new Date().toString()),
                 duration: Number(duration),
-                authors: addedToCourse.map((i) => i.id)
+                authors: addedToCourseAuthors.map((i) => i.id)
             }
 
-            onDataSubmit(newCourse, addedToCourse);
+            onDataSubmit(newCourse, addedToCourseAuthors);
             //----------------------------------------
             event.currentTarget.reset();
-            setAddedToCourse([]);
+            setAddedToCourseAuthors([]);
             setAllAuthors([])
 
             setFormValues({
@@ -276,11 +276,11 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                             <div className={styles.courseAuthors}>
                                 <h3>Course Authors</h3>
                                 <ul>
-                                    {addedToCourse.length === 0 ? <li>Author list is empty</li> : addedToCourse.map((authorItem) => (
+                                    {addedToCourseAuthors.length === 0 ? <li>Author list is empty</li> : addedToCourseAuthors.map((authorItem) => (
                                         <li key={authorItem.id}><AuthorItem authorItem={authorItem} deleteAuthor onButtonClick={() => handleAuthorAddDelete(authorItem.id)} /></li>
                                     ))}
                                 </ul>
-                                {<p style={{ color: 'red' }} className={areAuthorsValid ? styles.hidden : styles.active}>{areAuthorsValid || "There should be at least one author in the course"}</p>}
+                                {<p style={{ color: 'red' }} className={areAuthorsAdded ? styles.hidden : styles.active}>{areAuthorsAdded || "There should be at least one author in the course"}</p>}
                             </div>
                         </div>
                     </div>
