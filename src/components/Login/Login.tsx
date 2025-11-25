@@ -6,15 +6,14 @@ import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 
 import { useState } from 'react';
 
-import { FormData } from '../Courses/components/CreateCourse/CreateCourse';
-
+import { isValidAuth } from '../Registration/Registration';
 const Login: React.FC = () => {
     const [formValues, setFormValues] = useState({
         email: "",
         password: ""
     });
 
-    const [isFormValid, setIsFormValid] = useState<FormData>({
+    const [isFormValid, setIsFormValid] = useState<isValidAuth>({
         email: true,
         password: true
     })
