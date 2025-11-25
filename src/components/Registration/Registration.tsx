@@ -37,6 +37,11 @@ const Registration: React.FC = () => {
             ...prev,
             [name]: value,
         }))
+
+        setIsFormValid((prev) => ({
+            ...prev,
+            [name]: true
+        }))
     }
 
     const handleRegistration = (e: React.FormEvent<HTMLFormElement>): void => {

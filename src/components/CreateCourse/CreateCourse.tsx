@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
@@ -46,7 +46,7 @@ interface Props {
 
 const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const [formValues, setFormValues] = useState({
         title: '',
@@ -222,7 +222,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 duration: true,
                 author: true,
             })
-            navigate('/')
+            // navigate('/')
         }
     }
 
