@@ -2,23 +2,23 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
-import AuthorItem from "../AuthorItem/AuthorItem";
-import Button from "../../common/Button/Button";
-import Input from "../../common/Input/Input";
-import Textarea from "../../common/Textarea/Textarea";
+import AuthorItem from "./AuthorItem/AuthorItem";
+import Button from "../../../../common/Button/Button";
+import Input from "../../../../common/Input/Input";
+import Textarea from "../../../../common/Textarea/Textarea";
 
-import { BUTTON_CANCEL_TEXT } from "../../constants";
-import { BUTTON_CREATE_COURSE_TEXT } from "../../constants";
-import { BUTTON_CREATE_AUTHOR_TEXT } from "../../constants";
+import { BUTTON_CANCEL_TEXT } from "../../../../constants";
+import { BUTTON_CREATE_COURSE_TEXT } from "../../../../constants";
+import { BUTTON_CREATE_AUTHOR_TEXT } from "../../../../constants";
 
-import getCourseDuration from "../../helpers/getCourseDuration";
-import validateField from "../../helpers/validateField";
-import validateAuthors from "../../helpers/validateAuthors";
+import getCourseDuration from "../../../../helpers/getCourseDuration";
+import validateField from "../../../../helpers/validateField";
+import validateAuthors from "../../../../helpers/validateAuthors";
 
 import styles from './CreateCourse.module.scss'
-import formatCreationDate from "../../helpers/formatCreationDate";
+import formatCreationDate from "../../../../helpers/formatCreationDate";
 
-import { AuthorsType } from "../Courses/Courses";
+import { AuthorsType } from "../../Courses";
 
 import { v4 as uuidv4 } from 'uuid';
 

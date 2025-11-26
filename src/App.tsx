@@ -7,7 +7,7 @@ import Courses from './components/Courses/Courses.tsx';
 import CourseInfo from './components/CourseInfo/CourseInfo.tsx';
 import Registration from './components/Registration/Registration.tsx';
 import Login from './components/Login/Login.tsx';
-import CreateCourse from './components/CreateCourse/CreateCourse.tsx';
+import CreateCourse from './components/Courses/components/CreateCourse/CreateCourse.tsx';
 
 import { mockedCoursesList } from './constants.ts';
 import { mockedAuthorsList } from './constants.ts';
