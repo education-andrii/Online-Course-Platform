@@ -13,17 +13,12 @@ interface Props {
 }
 
 const AuthorItem: React.FC<Props> = ({ authorItem, addAuthor, deleteAuthor, onButtonClick }) => {
-    const { id, name } = authorItem;
-
-    if (!id) {
-        return null
-    }
-
+    const { id, name } = authorItem
     return (
         <div className={styles.wrapper} id={id}>
             <p>{name}</p>
-            {addAuthor && <button type='button' name={name} role='button' onClick={() => onButtonClick(id)}><img src={add} alt="Add" />Add author</button>}
-            {deleteAuthor && <button type='button' name={name} role='button' onClick={() => onButtonClick(id)}><img src={remove} alt="Remove" />Delete author</button>}
+            {addAuthor && <button type='button' onClick={() => onButtonClick(id)}><img src={add} alt="Add" />Add author</button>}
+            {deleteAuthor && <button type='button' onClick={() => onButtonClick(id)}><img src={remove} alt="Remove" />Delete author</button>}
         </div>
     )
 }
