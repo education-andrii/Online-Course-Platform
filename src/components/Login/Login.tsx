@@ -29,11 +29,6 @@ const Login: React.FC = () => {
             ...prev,
             [name]: value,
         }))
-
-        setIsFormValid((prev) => ({
-            ...prev,
-            [name]: true
-        }))
     }
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>): void => {
