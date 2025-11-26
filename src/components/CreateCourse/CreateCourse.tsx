@@ -267,22 +267,20 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                     <h4>Authors List</h4>
                                     <ul>
                                         {allAuthors.map((authorItem) => (
-                                            <AuthorItem author={authorItem} addAuthor onButtonClick={handleAuthorAddDelete} />
+                                            <li key={authorItem.id}><AuthorItem author={authorItem} addAuthor onButtonClick={handleAuthorAddDelete} /></li>
                                         ))}
-
+                                        <button type="button" name="Add author" role="button" >Add author</button>
+                                        <button type="button" name="Add author" role="button" >Delete author</button>
                                     </ul>
-                                    <button type="button" name="Add author" role="button" >Add author</button>
-                                    <button type="button" name="Add author" role="button" >Delete author</button>
                                 </div>
                             </div>
                         </div>
                         <div className={styles.right}>
                             <div className={styles.courseAuthors}>
                                 <h3>Course Authors</h3>
-                                {addedToCourseAuthors.length !== 0 && <li>author list is empty</li>}
                                 <ul>
-                                    {addedToCourseAuthors.length !== 0 && addedToCourseAuthors.map((authorItem) => (
-                                        <AuthorItem author={authorItem} deleteAuthor onButtonClick={handleAuthorAddDelete} />
+                                    {addedToCourseAuthors.length === 0 ? <li>author list is empty</li> : addedToCourseAuthors.map((authorItem) => (
+                                        <li key={authorItem.id}><AuthorItem author={authorItem} deleteAuthor onButtonClick={handleAuthorAddDelete} /></li>
                                     ))}
                                 </ul>
                                 {<p style={{ color: 'red' }} className={areAuthorsAdded ? styles.hidden : styles.active}>{areAuthorsAdded || "There should be at least one author in the course"}</p>}
