@@ -1,5 +1,5 @@
-import add from '../../assets/Icons/Add.svg'
-import remove from '../../assets/Icons/Remove.svg'
+import add from '../../../../../assets/Icons/Add.svg'
+import remove from '../../../../../../src/assets/Icons/Remove.svg'
 import styles from './AuthorItem.module.scss'
 import { MouseEventHandler } from 'react'
 
