@@ -229,7 +229,6 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
     const text = getCourseDuration(duration)
     const [firstPart, secondPart] = text.split(' ');
-    const finalDuration = <span><b>{firstPart}</b> {secondPart}</span>
 
     return (
         <div className={styles.createCourseContainerWrapper}>
@@ -250,7 +249,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                 <h3>Duration</h3>
                                 <div>
                                     <Input id="duration" name="duration" value={duration} withValidation onChange={(e) => handleChange(e)} labelText="Duration" isValid={isInputValid.duration} errorMessage={errorMessages.duration}>
-                                        {finalDuration}</Input>
+                                        <span><b>{firstPart}</b> {secondPart}</span></Input>
                                 </div>
                             </div>
                             <div className={styles.authors}>
