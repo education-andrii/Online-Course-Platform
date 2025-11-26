@@ -3,7 +3,7 @@ import remove from '../../../../../../src/assets/Icons/Remove.svg'
 import styles from './AuthorItem.module.scss'
 
 interface Props {
-    authorItem: {
+    author: {
         id: string;
         name: string;
     };
@@ -12,8 +12,8 @@ interface Props {
     onButtonClick: Function;
 }
 
-const AuthorItem: React.FC<Props> = ({ authorItem, addAuthor, deleteAuthor, onButtonClick }) => {
-    const { id, name } = authorItem
+const AuthorItem: React.FC<Props> = ({ author, addAuthor, deleteAuthor, onButtonClick }) => {
+    const { id, name } = author
     return (
         <div className={styles.wrapper} id={id}>
             <p>{name}</p>
