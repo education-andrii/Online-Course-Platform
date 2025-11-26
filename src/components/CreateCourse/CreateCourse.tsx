@@ -222,7 +222,6 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 duration: true,
                 author: true,
             })
-            event.currentTarget.reset()
             // navigate('/')
         }
     }
@@ -269,8 +268,8 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                         {allAuthors.map((authorItem) => (
                                             <li key={authorItem.id}><AuthorItem author={authorItem} addAuthor onButtonClick={handleAuthorAddDelete} /></li>
                                         ))}
-                                        <button type="button" name="Add author" role="button" >Add author</button>
-                                        <button type="button" name="Add author" role="button" >Delete author</button>
+                                        <button type="button" name="Add author" role="button" >Add Author</button>
+                                        <button type="button" name="Add author" role="button" >Delete Author</button>
                                     </ul>
                                 </div>
                             </div>
@@ -279,7 +278,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                             <div className={styles.courseAuthors}>
                                 <h3>Course Authors</h3>
                                 <ul>
-                                    {addedToCourseAuthors.length !== 0 && addedToCourseAuthors.map((authorItem) => (
+                                    {addedToCourseAuthors.length === 0 ? <li>Author list is empty</li> : addedToCourseAuthors.map((authorItem) => (
                                         <li key={authorItem.id}><AuthorItem author={authorItem} deleteAuthor onButtonClick={handleAuthorAddDelete} /></li>
                                     ))}
                                 </ul>
