@@ -269,7 +269,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                         {allAuthors.map((authorItem) => (
                                             <li key={authorItem.id}><AuthorItem author={authorItem} addAuthor onButtonClick={handleAuthorAddDelete} /></li>
                                         ))}
-                                        <button type='button' role='button' name='Add author' onClick={() => setAddedToCourseAuthors([{ id: 'test', name: 'test' }])}>
+                                        <button type='button' role='button' name='Add author' onClick={() => setAddedToCourseAuthors([{ id: '12345', name: 'author 1' }])}>
                                             Add author
                                         </button>
                                         <button type='button' role='button' name='Delete author' onClick={() => setAddedToCourseAuthors([])}>
