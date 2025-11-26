@@ -267,10 +267,10 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                     <h4>Authors List</h4>
                                     <ul>
                                         {allAuthors.map((authorItem) => (
-                                            <li key={authorItem.id}><AuthorItem author={authorItem} addAuthor onButtonClick={handleAuthorAddDelete} /></li>
+                                            <li key={authorItem.id}><AuthorItem author={authorItem} addAuthor onButtonClick={handleAuthorAddDelete} /><button type="button" name="Add author" role="button" onClick={() => handleAuthorAddDelete(authorItem.id)}>Add author</button></li>
                                         ))}
-                                        <button type="button" name="Add author" role="button" >Add author</button>
-                                        <button type="button" name="Add author" role="button" >Delete author</button>
+
+
                                     </ul>
                                 </div>
                             </div>
@@ -280,7 +280,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                                 <h3>Course Authors</h3>
                                 <ul>
                                     {addedToCourseAuthors.length === 0 ? <li>author list is empty</li> : addedToCourseAuthors.map((authorItem) => (
-                                        <li key={authorItem.id}><AuthorItem author={authorItem} deleteAuthor onButtonClick={handleAuthorAddDelete} /></li>
+                                        <li key={authorItem.id}><AuthorItem author={authorItem} deleteAuthor onButtonClick={handleAuthorAddDelete} /><button type="button" name="Add author" role="button" onClick={() => handleAuthorAddDelete(authorItem.id)}>Delete author</button></li>
                                     ))}
                                 </ul>
                                 {<p style={{ color: 'red' }} className={areAuthorsAdded ? styles.hidden : styles.active}>{areAuthorsAdded || "There should be at least one author in the course"}</p>}
