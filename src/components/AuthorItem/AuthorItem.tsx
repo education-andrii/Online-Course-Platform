@@ -13,7 +13,11 @@ interface Props {
 }
 
 const AuthorItem: React.FC<Props> = ({ authorItem, addAuthor, deleteAuthor, onButtonClick }) => {
-    const { id = '', name = '' } = authorItem;
+    const { id, name } = authorItem;
+
+    if (!id) {
+        return null
+    }
 
     return (
         <div className={styles.wrapper} id={id}>
