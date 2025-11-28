@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 import Header from './components/Header/Header.tsx';
@@ -7,7 +7,7 @@ import Courses from './components/Courses/Courses.tsx';
 import CourseInfo from './components/CourseInfo/CourseInfo.tsx';
 import Registration from './components/Registration/Registration.tsx';
 import Login from './components/Login/Login.tsx';
-import CreateCourse from './components/Courses/components/CreateCourse/CreateCourse.tsx';
+import CreateCourse from './components/CreateCourse/CreateCourse.tsx';
 
 import { mockedCoursesList } from './constants.ts';
 import { mockedAuthorsList } from './constants.ts';
@@ -48,17 +48,19 @@ function App() {
   let isEmpty: boolean = createdCourses.length === 0;
 
   return (
-    <div className="App">
-      <Header></Header>
-      <Routes>
-        <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
-          onDataSubmit={handleCourseInfoData}></Courses>} />
-        <Route path='/course-info' element={<CourseInfo course={clickedCourse} />} />
-        <Route path='/registration' element={<Registration />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/create-course' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
-      </Routes>
-    </div>
+    <Router>
+      <div className="App">
+        <Header></Header>
+        <Routes>
+          <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
+            onDataSubmit={handleCourseInfoData}></Courses>} />
+          <Route path='/course-info' element={<CourseInfo course={clickedCourse} />} />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/create-course' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
