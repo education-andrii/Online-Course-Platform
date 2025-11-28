@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 import Header from './components/Header/Header.tsx';
@@ -48,19 +48,17 @@ function App() {
   let isEmpty: boolean = createdCourses.length === 0;
 
   return (
-    <Router>
-      <div className="App">
-        <Header></Header>
-        <Routes>
-          <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
-            onDataSubmit={handleCourseInfoData}></Courses>} />
-          <Route path='/course-info' element={<CourseInfo course={clickedCourse} />} />
-          <Route path='/registration' element={<Registration />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/create-course' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      <Header></Header>
+      <Routes>
+        <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
+          onDataSubmit={handleCourseInfoData}></Courses>} />
+        <Route path='/course-info' element={<CourseInfo course={clickedCourse} />} />
+        <Route path='/registration' element={<Registration />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/create-course' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
+      </Routes>
+    </div>
   );
 }
 
