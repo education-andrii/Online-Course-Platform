@@ -1,0 +1,25 @@
+.header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    padding-left: 37px;
+    padding-right: 37px;
+    position: fixed;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.150);
+    box-sizing: border-box;
+    z-index: 1000;
+
+    div {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .headerDisplayName {
+        font-size: 14px;
+        font-weight: 600;
+    }
+}

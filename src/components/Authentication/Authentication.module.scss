@@ -1,0 +1,38 @@
+@use '/src/scss/variables.scss' as vars;
+@use '/src/scss/mixins';
+
+.authenticationContainerWrapper {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    min-height: calc(100vh - 80px - 3rem);
+    margin-top: -2rem;
+
+    .authenticationForm {
+        width: 585px;
+        @include mixins.generic-cards;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.25rem;
+        padding: 4.5rem 150px;
+        box-sizing: border-box;
+        text-align: center;
+
+        label {
+            text-align: left;
+        }
+
+        &>a {
+            text-decoration: none;
+            width: 286px;
+        }
+
+        span {
+            text-align: center;
+        }
+    }
+}

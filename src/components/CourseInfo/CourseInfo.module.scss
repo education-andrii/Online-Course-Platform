@@ -1,0 +1,60 @@
+@use '/src/scss/variables.scss' as vars;
+@use '/src/scss/mixins.scss';
+
+.courseInfoWrapper {
+    grid-area: main;
+    gap: 1rem;
+    margin: 0;
+}
+
+.infoCardContainer {
+    display: flex;
+    @include mixins.generic-cards;
+    margin: 1rem 0 3rem 0;
+    padding: 3rem;
+    gap: 2rem;
+
+    .cardLeftInfo {
+        flex: 1 1 500px;
+
+        .title {
+            margin-bottom: 1.2rem;
+        }
+    }
+
+    .divisionLine {
+        background-color: vars.$main-lines-color;
+        width: 2px;
+        height: 200px;
+        align-self: center;
+    }
+
+    .cardRightInfo {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 20px;
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+
+            li {
+                line-height: 20px;
+                height: 25%;
+            }
+        }
+
+    }
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.button {
+    float: right;
+}

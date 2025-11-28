@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    button {
+        all: unset;
+        align-items: center;
+        display: flex;
+        cursor: pointer;
+        border: 4px solid transparent;
+        margin: -4px;
+        font-size: 0;
+    }
+}
