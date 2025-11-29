@@ -63,7 +63,7 @@ const Login: React.FC = () => {
 
             if (result.successful) {
                 localStorage.setItem('authToken', result.result)
-                navigate('/courses')
+                navigate('/courses', { replace: true })
                 e.currentTarget.reset();
                 setFormValues({
                     email: "",
