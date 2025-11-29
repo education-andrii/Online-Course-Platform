@@ -37,7 +37,6 @@ const Courses: React.FC<Props> = ({ authors, courses }) => {
     const navigate = useNavigate();
     if (!localStorage.getItem('authToken')) {
         navigate('/login', { replace: true })
-        return
     }
     //For async data
     useEffect(() => {
