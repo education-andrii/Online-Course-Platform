@@ -62,7 +62,6 @@ const Login: React.FC = () => {
             const result = await loginUserApi(loginData)
 
             if (result.successful) {
-                alert(result.successful)
                 localStorage.setItem('authToken', result.result)
                 navigate('/courses')
                 e.currentTarget.reset();
