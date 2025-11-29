@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import CourseCard from './components/CourseCard/CourseCard';
 import Button from '../../common/Button/Button.tsx';
@@ -34,10 +34,6 @@ interface Props {
 
 const Courses: React.FC<Props> = ({ authors, courses }) => {
     const [displayedCourses, setDisplayedCourses] = useState<CoursesType[]>([]);
-    const navigate = useNavigate();
-    if (!localStorage.getItem('authToken')) {
-        navigate('/login', { replace: true })
-    }
     //For async data
     useEffect(() => {
         if (courses) {
