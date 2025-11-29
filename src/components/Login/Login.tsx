@@ -6,7 +6,9 @@ import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 
 import { useState } from 'react';
 
-import { isValidAuth } from '../Registration/Registration';
+import { IsValidAuth } from '../Registration/Registration';
+import loginUserApi from '@/helpers/loginUserApi';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
     const [formValues, setFormValues] = useState({
@@ -14,10 +16,12 @@ const Login: React.FC = () => {
         password: ""
     });
 
-    const [isFormValid, setIsFormValid] = useState<isValidAuth>({
+    const [isFormValid, setIsFormValid] = useState<IsValidAuth>({
         email: true,
         password: true
     })
+
+    const navigate = useNavigate();
 
     const validateField = (value: string) => {
         return value.trim() !== '';
@@ -36,7 +40,7 @@ const Login: React.FC = () => {
         }))
     }
 
-    const handleLogin = (e: React.FormEvent<HTMLFormElement>): void => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
         const { email, password } = formValues;
@@ -51,22 +55,32 @@ const Login: React.FC = () => {
 
 
         if (isEmailValid && isPasswordValid) {
-            e.currentTarget.reset();
-            setFormValues({
-                email: "",
-                password: ""
-            })
-            setIsFormValid({
-                email: true,
-                password: true
-            })
+            const loginData = {
+                email,
+                password
+            }
+            const result = await loginUserApi(loginData)
 
+            if (result.successful) {
+                alert(result.successful)
+                localStorage.setItem('authToken', result.result)
+                navigate('/courses')
+                e.currentTarget.reset();
+                setFormValues({
+                    email: "",
+                    password: ""
+                })
+                setIsFormValid({
+                    email: true,
+                    password: true
+                })
+            }
         }
     }
 
     return (
-        <Authentication title={"Login"} handleSubmit={handleLogin} buttonText={BUTTON_LOGIN_TEXT} linkPath={'/registration'} linkText={`If you don't have an account you may`} linkBoldText={'Registration'}>
-            <Input id="email" name="email" value={formValues.email} withValidation type="email" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
+        <Authentication title={"Login"} onSubmit={handleLogin} buttonText={BUTTON_LOGIN_TEXT} linkPath={'/registration'} linkText={`If you don't have an account you may`} linkBoldText={'Registration'}>
+            <Input id="email" name="email" value={formValues.email} withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
             <Input id='password' name='password' value={formValues.password} withValidation type="password" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px' />
         </Authentication>
     )
