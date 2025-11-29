@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import CourseCard from './components/CourseCard/CourseCard';
 import Button from '../../common/Button/Button.tsx';
@@ -30,11 +30,15 @@ export interface CoursesType {
 interface Props {
     authors: AuthorsType[]
     courses: CoursesType[]
-    onDataSubmit: Function
 }
 
-const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
+const Courses: React.FC<Props> = ({ authors, courses }) => {
     const [displayedCourses, setDisplayedCourses] = useState<CoursesType[]>([]);
+    const navigate = useNavigate();
+    if (!localStorage.getItem('authToken')) {
+        navigate('/login', { replace: true })
+        return
+    }
     //For async data
     useEffect(() => {
         if (courses) {
@@ -42,7 +46,6 @@ const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
         }
     }, [courses])
     //------------
-
     if (!courses || courses.length === 0) {
         return <EmptyCourseList />
     }
@@ -65,7 +68,7 @@ const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
         <div className={styles.mainCoursesContainer}>
             <div className={styles.mainFunctional}>
                 <SearchBar handleSearch={handleSearch} />
-                <Link to="/create-course"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
+                <Link to="/add"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
             </div>
             <ul className={styles.coursesList}>
                 {displayedCourses.length === 0 ?
@@ -84,7 +87,6 @@ const Courses: React.FC<Props> = ({ authors, courses, onDataSubmit }) => {
                             <li key={course.id || index} className={styles.courseCard}>
                                 <CourseCard
                                     course={newCourse}
-                                    onDataSubmit={onDataSubmit}
                                 />
                             </li>
                         )
