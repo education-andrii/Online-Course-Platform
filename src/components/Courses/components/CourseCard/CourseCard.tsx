@@ -13,10 +13,9 @@ interface Props {
         duration: string,
         authors: string
     }
-    onDataSubmit: Function
 }
 
-const CourseCard: React.FC<Props> = ({ course, onDataSubmit }) => {
+const CourseCard: React.FC<Props> = ({ course }) => {
     const { id, title, description, creationDate, duration, authors } = course
 
     return (
@@ -34,7 +33,7 @@ const CourseCard: React.FC<Props> = ({ course, onDataSubmit }) => {
                             <li><b>Duration:</b> {duration}</li>
                             <li><b>Created:</b> {creationDate}</li>
                         </ul>
-                        <Link to='/course-info'><Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px' onClick={() => onDataSubmit(course)}></Button></Link>
+                        <Link to={id}><Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px'></Button></Link>
                     </div>
                 </div>
             </div>
