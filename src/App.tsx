@@ -9,6 +9,7 @@ import CourseInfo from './components/CourseInfo/CourseInfo.tsx';
 import Registration from './components/Registration/Registration.tsx';
 import Login from './components/Login/Login.tsx';
 import CreateCourse from './components/CreateCourse/CreateCourse.tsx';
+import AuthorizedRoute from './components/AuthorizedRoute/AuthorizedRoute.tsx';
 
 import { mockedCoursesList } from './constants.ts';
 import { mockedAuthorsList } from './constants.ts';
@@ -33,6 +34,11 @@ function App() {
     setCreatedCoursesAuthors((prevAuthors) => ([...prevAuthors, ...newAuthors]))
   }
 
+  const [isAuthorized, setIsAuthorized] = useState(!!localStorage.getItem('authToken'));
+  const handleAuthorizationChange = (isLoggedIn: boolean) => {
+    setIsAuthorized(isLoggedIn)
+  }
+
   let isEmpty: boolean = createdCourses.length === 0;
 
   return (
@@ -40,14 +46,15 @@ function App() {
       <div className="App">
         <Header></Header>
         <Routes>
-          <Route path='/' element={<Navigate to='/courses' replace />} />
-          <Route path='/courses' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
-          ></Courses>} />
-          <Route path='/courses/:courseId' element={<CourseInfo allAuthors={createdCoursesAuthors} allCourses={createdCourses} />} />
-          <Route path='/registration' element={<Registration />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/add' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
-          <Route path='*' element={<Navigate to='/login' replace />} />
+          <Route path='/' element={<AuthorizedRoute><Navigate to='/courses' replace /></AuthorizedRoute>} />
+          <Route path='/courses' element={<AuthorizedRoute>{
+            isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}></Courses>
+          }</AuthorizedRoute>} />
+          <Route path='/courses/:courseId' element={<AuthorizedRoute><CourseInfo allAuthors={createdCoursesAuthors} allCourses={createdCourses} /></AuthorizedRoute>} />
+          <Route path='/registration' element={isAuthorized ? <Navigate to='/courses' replace /> : <Registration />} />
+          <Route path='/login' element={isAuthorized ? <Navigate to='/courses' replace /> : <Login handleAuthorization={handleAuthorizationChange} />} />
+          <Route path='/add' element={<AuthorizedRoute><CreateCourse onDataSubmit={handleCoursesData} /></AuthorizedRoute>} />
+          <Route path='*' element={isAuthorized ? <Navigate to='/courses' replace /> : <Navigate to='/login' replace />} />
         </Routes>
       </div>
     </Router>
