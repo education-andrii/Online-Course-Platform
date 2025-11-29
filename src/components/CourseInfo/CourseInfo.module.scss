@@ -5,6 +5,8 @@
     grid-area: main;
     gap: 1rem;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .infoCardContainer {
@@ -57,4 +59,17 @@ h1 {
 
 .button {
     float: right;
+}
+
+.pageNotFoundWrapper {
+    display: flex;
+    min-height: calc(100vh - 80px - 6rem);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .pageNotFoundMessage {
+        align-self: center;
+        justify-content: center;
+    }
 }

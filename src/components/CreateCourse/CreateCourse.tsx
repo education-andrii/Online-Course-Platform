@@ -221,7 +221,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 duration: true,
                 author: true,
             })
-            navigate('/')
+            navigate('/courses')
         }
     }
 

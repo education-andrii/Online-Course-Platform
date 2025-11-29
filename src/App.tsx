@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import Header from './components/Header/Header.tsx';
@@ -27,22 +28,9 @@ function App() {
 
   const [createdCoursesAuthors, setCreatedCoursesAuthors] = useState<CreatedCoursesAuthors>(mockedAuthorsList)
 
-  const [clickedCourse, setClickedCourse] = useState<CoursesType>({
-    id: '',
-    title: '',
-    description: '',
-    creationDate: '',
-    duration: 0,
-    authors: []
-  })
-
   const handleCoursesData = (newCourse: CreatedCourses[number], newAuthors: CreatedCoursesAuthors) => {
     setCreatedCourses((prevCourses) => ([...prevCourses, newCourse]))
     setCreatedCoursesAuthors((prevAuthors) => ([...prevAuthors, ...newAuthors]))
-  }
-
-  const handleCourseInfoData = (course: CoursesType) => {
-    setClickedCourse(course)
   }
 
   let isEmpty: boolean = createdCourses.length === 0;
@@ -52,12 +40,14 @@ function App() {
       <div className="App">
         <Header></Header>
         <Routes>
-          <Route path='/' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
-            onDataSubmit={handleCourseInfoData}></Courses>} />
-          <Route path='/course-info' element={<CourseInfo course={clickedCourse} />} />
+          <Route path='/' element={<Navigate to='/courses' replace />} />
+          <Route path='/courses' element={isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}
+          ></Courses>} />
+          <Route path='/courses/:courseId' element={<CourseInfo allAuthors={createdCoursesAuthors} allCourses={createdCourses} />} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/create-course' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
+          <Route path='/add' element={<CreateCourse onDataSubmit={handleCoursesData} />} />
+          <Route path='*' element={<Navigate to='/login' replace />} />
         </Routes>
       </div>
     </Router>
