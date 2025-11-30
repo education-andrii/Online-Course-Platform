@@ -6,8 +6,7 @@ import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import useRegistration from '@/hooks/useRegistration';
-import registerUserApi from '@/helpers/registerUserApi';
+import registerUserApi from '../../helpers/registerUserApi';
 
 export interface IsValidAuth {
     name?: boolean,

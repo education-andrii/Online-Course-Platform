@@ -14,7 +14,7 @@ import { BUTTON_CREATE_AUTHOR_TEXT } from "../../constants";
 import getCourseDuration from "../../helpers/getCourseDuration";
 import validateField from "../../helpers/validateField";
 import validateAuthors from "../../helpers/validateAuthors";
-import generateId from "@/helpers/generateId";
+import generateId from "../../helpers/generateId";
 
 import styles from './CreateCourse.module.scss'
 import formatCreationDate from "../../helpers/formatCreationDate";

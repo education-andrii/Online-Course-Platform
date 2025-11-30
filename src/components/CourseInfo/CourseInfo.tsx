@@ -7,8 +7,8 @@ import Button from '../../common/Button/Button.tsx';
 import { CoursesType } from "../Courses/Courses.tsx";
 import { AuthorsType } from '../Courses/Courses.tsx';
 
-import getAuthorsNames from '@/helpers/getAuthorsNames.ts';
-import getCourseDuration from '@/helpers/getCourseDuration.ts';
+import getAuthorsNames from '../../helpers/getAuthorsNames.ts';
+import getCourseDuration from '../../helpers/getCourseDuration.ts';
 
 import styles from './CourseInfo.module.scss';
 

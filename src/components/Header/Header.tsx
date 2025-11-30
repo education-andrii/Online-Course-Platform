@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from './components/Logo/Logo';
 
-import Button from '@/common/Button/Button';
+import Button from '../../common/Button/Button';
 
 import { BUTTON_LOGOUT_TEXT } from '../../constants';
 

@@ -7,7 +7,7 @@ import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 import { useState } from 'react';
 
 import { IsValidAuth } from '../Registration/Registration';
-import loginUserApi from '@/helpers/loginUserApi';
+import loginUserApi from '../../helpers/loginUserApi';
 import { useNavigate } from 'react-router-dom';
 interface Props {
     onLogIn: Function
