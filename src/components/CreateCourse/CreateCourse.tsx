@@ -14,6 +14,7 @@ import { BUTTON_CREATE_AUTHOR_TEXT } from "../../constants";
 import getCourseDuration from "../../helpers/getCourseDuration";
 import validateField from "../../helpers/validateField";
 import validateAuthors from "../../helpers/validateAuthors";
+import generateId from "@/helpers/generateId";
 
 import styles from './CreateCourse.module.scss'
 import formatCreationDate from "../../helpers/formatCreationDate";
@@ -122,7 +123,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
         }))
         setIsInputValid((prev) => ({ ...prev, author: validateAuthors(author, 2, 20)[0] }))
         if (validateAuthors(author, 2, 20)[0]) {
-            setAllAuthors((prev) => ([...prev, { id: Math.random().toString(36).substring(2), name: author }]))
+            setAllAuthors((prev) => ([...prev, { id: generateId(), name: author }]))
 
             setFormValues((prev) => ({
                 ...prev,
@@ -195,7 +196,7 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
 
             // Transfer of the latest course data to the App
             const newCourse = {
-                id: Math.random().toString(36).substring(2),
+                id: generateId(),
                 title: title,
                 description: description,
                 creationDate: formatCreationDate(new Date().toString()),
