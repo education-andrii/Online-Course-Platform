@@ -63,7 +63,7 @@ const Courses: React.FC<Props> = ({ authors, courses }) => {
         <div className={styles.mainCoursesContainer}>
             <div className={styles.mainFunctional}>
                 <SearchBar handleSearch={handleSearch} />
-                <Link to="/add"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
+                <Link to="/courses/add"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
             </div>
             <ul className={styles.coursesList}>
                 {displayedCourses.length === 0 ?
