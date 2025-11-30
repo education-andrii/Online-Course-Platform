@@ -10,9 +10,9 @@ import { IsValidAuth } from '../Registration/Registration';
 import loginUserApi from '@/helpers/loginUserApi';
 import { useNavigate } from 'react-router-dom';
 interface Props {
-    handleAuthorization: Function
+    onLogIn: Function
 }
-const Login: React.FC<Props> = ({ handleAuthorization }) => {
+const Login: React.FC<Props> = ({ onLogIn }) => {
     const [formValues, setFormValues] = useState({
         email: "",
         password: ""
@@ -64,9 +64,8 @@ const Login: React.FC<Props> = ({ handleAuthorization }) => {
             const result = await loginUserApi(loginData)
 
             if (result.successful) {
-                localStorage.setItem('authToken', result.result)
+                onLogIn(result.result, result.user.name)
                 navigate('/courses', { replace: true })
-                handleAuthorization(true)
                 e.currentTarget.reset();
                 setFormValues({
                     email: "",
