@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from './components/Header/Header.tsx';
 import EmptyCourseList from './components/EmptyCourseList/EmptyCourseList.tsx';
@@ -9,7 +9,8 @@ import CourseInfo from './components/CourseInfo/CourseInfo.tsx';
 import Registration from './components/Registration/Registration.tsx';
 import Login from './components/Login/Login.tsx';
 import CreateCourse from './components/CreateCourse/CreateCourse.tsx';
-import AuthorizedRoute from './components/AuthorizedRoute/AuthorizedRoute.tsx';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.tsx';
+import PublicRoute from './components/PublicRoute/PublicRoute.tsx';
 
 import { mockedCoursesList } from './constants.ts';
 import { mockedAuthorsList } from './constants.ts';
@@ -34,27 +35,40 @@ function App() {
     setCreatedCoursesAuthors((prevAuthors) => ([...prevAuthors, ...newAuthors]))
   }
 
-  const [isAuthorized, setIsAuthorized] = useState(!!localStorage.getItem('authToken'));
-  const handleAuthorizationChange = (isLoggedIn: boolean) => {
-    setIsAuthorized(isLoggedIn)
+  const [isAuthorized, setIsAuthorized] = useState(!!localStorage.getItem('token'));
+
+  const handleLogIn = (token: string, userName: string) => {
+    localStorage.setItem('token', token)
+    localStorage.setItem('user', userName)
+    setIsAuthorized(true)
   }
 
-  let isEmpty: boolean = createdCourses.length === 0;
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setIsAuthorized(false)
+  }
+
+  const [isCourseListEmpty, setIsCourseListEmpty] = useState(createdCourses.length === 0)
+  useEffect(() => {
+    setIsCourseListEmpty(createdCourses.length === 0)
+  }, [createdCourses])
+
 
   return (
     <Router>
       <div className="App">
-        <Header></Header>
+        <Header isAuthorized={isAuthorized} onLogOut={handleLogOut}></Header>
         <Routes>
-          <Route path='/' element={<AuthorizedRoute><Navigate to='/courses' replace /></AuthorizedRoute>} />
-          <Route path='/courses' element={<AuthorizedRoute>{
-            isEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}></Courses>
-          }</AuthorizedRoute>} />
-          <Route path='/courses/:courseId' element={<AuthorizedRoute><CourseInfo allAuthors={createdCoursesAuthors} allCourses={createdCourses} /></AuthorizedRoute>} />
-          <Route path='/registration' element={isAuthorized ? <Navigate to='/courses' replace /> : <Registration />} />
-          <Route path='/login' element={isAuthorized ? <Navigate to='/courses' replace /> : <Login handleAuthorization={handleAuthorizationChange} />} />
-          <Route path='/add' element={<AuthorizedRoute><CreateCourse onDataSubmit={handleCoursesData} /></AuthorizedRoute>} />
-          <Route path='*' element={isAuthorized ? <Navigate to='/courses' replace /> : <Navigate to='/login' replace />} />
+          <Route path='/' element={<PrivateRoute><Navigate to='/courses' replace /></PrivateRoute>} />
+          <Route path='/courses' element={<PrivateRoute>{
+            isCourseListEmpty ? <EmptyCourseList></EmptyCourseList> : <Courses authors={createdCoursesAuthors} courses={createdCourses}></Courses>
+          }</PrivateRoute>} />
+          <Route path='/courses/:courseId' element={<PrivateRoute><CourseInfo allAuthors={createdCoursesAuthors} allCourses={createdCourses} /></PrivateRoute>} />
+          <Route path='/registration' element={<PublicRoute><Registration /></PublicRoute>} />
+          <Route path='courses/add' element={<PrivateRoute><CreateCourse onDataSubmit={handleCoursesData} /></PrivateRoute>} />
+          <Route path='/login' element={<PublicRoute><Login onLogIn={handleLogIn} /></PublicRoute>} />
+          <Route path='*' element={<PublicRoute><Navigate to='/login' replace /></PublicRoute>} />
         </Routes>
       </div>
     </Router>
