@@ -63,7 +63,7 @@ const Login: React.FC<Props> = ({ onLogIn }) => {
             }
             const result = await loginUserApi(loginData)
 
-            if (result.successful) {
+            if (result.successful !== false) {
                 onLogIn(result.result, result.user.name)
                     (!!localStorage.getItem('token') && !!localStorage.getItem('user')) && (navigate('/courses', { replace: true }))
                 e.currentTarget.reset();

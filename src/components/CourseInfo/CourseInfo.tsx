@@ -20,7 +20,7 @@ interface Props {
 
 const CourseInfo: React.FC<Props> = ({ allAuthors, allCourses }) => {
     const { courseId } = useParams();
-    if (courseId) {
+    if (courseId && allCourses && allAuthors) {
         const course = allCourses.find(courseItem => courseItem.id === courseId)
         if (!course) {
             return (<div className={styles.courseInfoWrapper}>

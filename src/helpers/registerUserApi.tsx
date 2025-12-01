@@ -17,7 +17,6 @@ const registerUserApi = async (newUser: { name: string, email: string, password:
         }
         return result
     } catch (error) {
-        alert(`An error occurred ${error}`)
         throw error;
     }
 }
