@@ -79,7 +79,7 @@ const Registration: React.FC = () => {
 
             const result = await registerUserApi(newUser)
 
-            if (result.successful) {
+            if (result.successful !== false) {
                 navigate('/login')
                 // e.currentTarget.reset();
                 setFormValues({
