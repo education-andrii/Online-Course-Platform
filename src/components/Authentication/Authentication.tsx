@@ -12,8 +12,8 @@ interface Props {
     onSubmit: React.FormEventHandler<HTMLFormElement>;
     buttonText?: string;
     linkPath: string;
-    linkText: string;
-    linkBoldText: string;
+    linkText?: string;
+    linkBoldText?: string;
     buttonRole?: string;
     buttonName?: string
 }
