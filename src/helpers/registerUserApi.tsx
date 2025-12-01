@@ -41,7 +41,7 @@ const registerUserApi = async (newUser: { name: string, email: string, password:
 
         if (!response.ok) {
             alert(`Registration failed: ${result.errors.join(', ') || 'Unknown Server error'}`)
-            return result;
+            return null;
         }
         return result
     } catch (error) {

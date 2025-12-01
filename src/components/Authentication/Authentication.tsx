@@ -26,7 +26,7 @@ const Authentication: React.FC<Props> = ({ title, children, formRef, onSubmit, b
             <form ref={formRef} className={styles.authenticationForm} onSubmit={onSubmit}>
                 {children}
                 <Button buttonText={buttonText} type="submit" role={buttonRole} name={buttonName} width='286px' height='50px' />
-                <Link to={linkPath}><span>{linkText} <strong>{linkBoldText}</strong></span></Link>
+                <span>{linkText} <Link to={linkPath}>{linkBoldText}</Link></span>
             </form>
         </div >
     )
