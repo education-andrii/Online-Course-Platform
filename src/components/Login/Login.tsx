@@ -65,7 +65,7 @@ const Login: React.FC<Props> = ({ onLogIn }) => {
 
             if (result.successful !== false) {
                 onLogIn(result.result, result.user.name)
-                    (!!localStorage.getItem('token') && !!localStorage.getItem('user')) && (navigate('/courses', { replace: true }))
+                navigate('/courses', { replace: true })
                 e.currentTarget.reset();
                 setFormValues({
                     email: "",
