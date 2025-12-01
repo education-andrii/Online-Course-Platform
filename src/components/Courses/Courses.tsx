@@ -5,7 +5,7 @@ import Button from '../../common/Button/Button.tsx';
 import SearchBar from './components/SearchBar/SearchBar.tsx';
 import EmptyCourseList from '../EmptyCourseList/EmptyCourseList.tsx';
 
-import { BUTTON_ADD_NEW_COURSE_TEXT } from '../../constants.ts';
+import { BUTTON_ADD_NEW_COURSE_TEXT, mockedAuthorsList, mockedCoursesList } from '../../constants.ts';
 
 import getCourseDuration from '../../helpers/getCourseDuration.ts';
 import getAuthorsNames from '../../helpers/getAuthorsNames.ts';
@@ -32,7 +32,7 @@ interface Props {
     courses: CoursesType[]
 }
 
-const Courses: React.FC<Props> = ({ authors, courses }) => {
+const Courses: React.FC<Props> = ({ authors = mockedAuthorsList, courses = mockedCoursesList }) => {
     const [displayedCourses, setDisplayedCourses] = useState<CoursesType[]>([]);
     //For async data
     useEffect(() => {
