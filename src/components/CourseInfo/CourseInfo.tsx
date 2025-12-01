@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import { BUTTON_BACK_TEXT } from '../../constants.ts'
+import { BUTTON_BACK_TEXT, mockedAuthorsList, mockedCoursesList } from '../../constants.ts'
 import Button from '../../common/Button/Button.tsx';
 
 import { CoursesType } from "../Courses/Courses.tsx";
@@ -18,7 +18,7 @@ interface Props {
     allCourses: CoursesType[]
 }
 
-const CourseInfo: React.FC<Props> = ({ allAuthors, allCourses }) => {
+const CourseInfo: React.FC<Props> = ({ allAuthors = mockedAuthorsList, allCourses = mockedCoursesList }) => {
     const { courseId } = useParams();
     if (courseId && allCourses && allAuthors) {
         const course = allCourses.find(courseItem => courseItem.id === courseId)
