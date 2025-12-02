@@ -9,18 +9,17 @@ import { BUTTON_LOGOUT_TEXT } from '../../constants';
 import './Header.scss'
 import { useEffect, useState } from 'react';
 interface Props {
-    isAuthorized?: boolean;
-    onLogOut?: Function
+    isAuthorized: boolean;
+    onLogOut: Function
 }
-const Header: React.FC<Props> = ({ }) => {
+const Header: React.FC<Props> = ({ isAuthorized, onLogOut }) => {
     const navigate = useNavigate()
     const location = useLocation();
     const [displayName, setDisplayName] = useState<string>('')
-    // let isLogged = isAuthorized
-    let isLogged = !!localStorage.getItem('token');
+    let isLogged = isAuthorized
 
     useEffect(() => {
-        if (isLogged) {
+        if (isAuthorized) {
             const getUserName = () => {
                 const name = localStorage.getItem('user') || '';
                 setDisplayName(name)
@@ -29,12 +28,10 @@ const Header: React.FC<Props> = ({ }) => {
         } else {
             setDisplayName('')
         }
-    }, [isLogged])
+    }, [isAuthorized])
 
     const handleLogOutClick = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        // onLogOut();
+        onLogOut();
         navigate('/login');
     }
 

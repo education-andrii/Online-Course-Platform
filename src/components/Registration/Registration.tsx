@@ -1,7 +1,7 @@
 import Authentication from '../Authentication/Authentication';
 import Input from '../../common/Input/Input';
 
-// import { BUTTON_REGISTRATION_TEXT } from '../../constants';
+import { BUTTON_REGISTRATION_TEXT } from '../../constants';
 import { INPUT_INPUT_TEXT_PLACEHOLDER } from '../../constants';
 
 import { useState } from 'react';
@@ -97,7 +97,7 @@ const Registration: React.FC = () => {
     }
 
     return (
-        <Authentication title={"Registration"} onSubmit={handleRegistration} buttonText={'Register'} linkPath={'/login'} linkText={`If you have an account you may`} linkBoldText={'Login'} buttonRole={'button'} buttonName={'register'}>
+        <Authentication title={"Registration"} onSubmit={handleRegistration} buttonText={BUTTON_REGISTRATION_TEXT} linkPath={'/login'} linkText={`If you have an account you may`} linkBoldText={'Login'} buttonRole={'button'} buttonName={'register'}>
             <Input id="name" name="name" value={formValues.name} withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Name" isValid={isFormValid.name} width='286px' height='50px' />
             <Input id="email" name="email" value={formValues.email} withValidation placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Email" isValid={isFormValid.email} width='286px' height='50px' />
             <Input id='password' name='password' value={formValues.password} withValidation type="password" placeholder={INPUT_INPUT_TEXT_PLACEHOLDER} onChange={handleChange} labelText="Password" isValid={isFormValid.password} width='286px' height='50px' />
