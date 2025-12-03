@@ -1,0 +1,80 @@
+@use '/src/scss/variables.scss' as vars;
+
+@mixin generic-cards() {
+    background-color: vars.$main-contrast-color;
+    border: 2px solid rgba(0, 0, 0, 0.080);
+    border-radius: vars.$main-border-radius;
+}
+
+@mixin input-vertical-stack($gap: vars.$secondary-gap) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin generic-inputs() {
+
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid vars.$main-lines-color;
+    border-radius: vars.$secondary-border-radius;
+    font-size: 1rem;
+
+    &::placeholder {
+        color: vars.$main-lines-color;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: black;
+        color: vars.$main-text-color;
+    }
+}
+
+@mixin input-styles($selector) {
+    .#{$selector}Container {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        &>div {
+            display: flex;
+            gap: vars.$secondary-gap;
+            align-items: center;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .#{$selector} {
+            @include generic-inputs;
+        }
+
+        .#{$selector}-error {
+            outline: red solid 1px;
+            border: 0;
+        }
+
+        .#{$selector}-error:focus {
+            outline: red solid 2px;
+            border: 0;
+        }
+
+        .#{$selector}-error-message {
+            color: red;
+            position: absolute;
+            top: 100%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: inline-block;
+        }
+    }
+}

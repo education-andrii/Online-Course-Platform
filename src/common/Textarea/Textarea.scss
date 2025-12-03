@@ -1,0 +1,4 @@
+@use '/src/scss/variables.scss' as vars;
+@use '/src/scss/mixins' as mixins;
+
+@include mixins.input-styles("textarea");
