@@ -8,14 +8,15 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: vars.$main-contrast-color;
+    font-weight: 700;
+    font-size: 16px;
 
     &:hover {
         background-color: black;
     }
 
-    .buttonText {
-        color: vars.$main-contrast-color;
-        font-weight: 700;
-        font-size: 16px;
-    }
 }
