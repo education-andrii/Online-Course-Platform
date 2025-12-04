@@ -6,7 +6,7 @@ const authorsSlice = createSlice({
     name: 'authors',
     initialState: initialAuthorsState,
     reducers: {
-        setAuthors(state, action) {
+        setAuthors(_state, action) {
             return action.payload
         },
         addAuthors(state, action) {

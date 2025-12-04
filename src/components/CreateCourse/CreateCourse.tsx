@@ -203,7 +203,7 @@ const CreateCourse: React.FC = () => {
                 duration: Number(duration),
                 authors: addedToCourseAuthors.map((i) => i.id)
             }
-            dispatch(coursesActions.addCourses(newCourse))
+            dispatch(coursesActions.addCourse(newCourse))
             dispatch(authorsActions.addAuthors(addedToCourseAuthors))
 
             //----------------------------------------

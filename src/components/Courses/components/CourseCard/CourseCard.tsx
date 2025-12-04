@@ -24,7 +24,7 @@ const CourseCard: React.FC<Props> = ({ course }) => {
     const { id, title, description, creationDate, duration, authors } = course
 
     const handleDeleteCourse = () => {
-        dispatch(coursesActions.removeCourse(id))
+        dispatch(coursesActions.deleteCourse(id))
     }
 
     return (

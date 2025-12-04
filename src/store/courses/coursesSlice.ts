@@ -6,13 +6,13 @@ const coursesSlice = createSlice({
     name: 'courses',
     initialState: initialCoursesState,
     reducers: {
-        setCourses(state, action) {
+        setCourses(_state, action) {
             return action.payload
         },
-        addCourses(state, action) {
+        addCourse(state, action) {
             state.push(action.payload)
         },
-        removeCourse(state, action: PayloadAction<string>) {
+        deleteCourse(state, action: PayloadAction<string>) {
             const courseToRemoveId = action.payload
             return state.filter(course => course.id !== courseToRemoveId)
         }

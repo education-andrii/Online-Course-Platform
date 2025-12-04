@@ -70,11 +70,11 @@ const Courses: React.FC = () => {
     //------------
 
     if (isLoading) {
-        return <div className={styles.loading}>Loading...</div>
+        return <div className={styles.loadingCourseList}><h1>Loading...</h1></div>
     }
 
     if (loadingError) {
-        return <div className={styles.error}>{loadingError}</div>
+        return <div className={styles.courseListLoadingError}><h1>{loadingError}</h1></div>
     }
 
     if (!courses || courses.length === 0) {
