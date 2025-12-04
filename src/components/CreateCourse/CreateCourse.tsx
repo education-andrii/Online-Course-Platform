@@ -123,9 +123,10 @@ const CreateCourse: React.FC = () => {
         }))
         setIsInputValid((prev) => ({ ...prev, author: validateAuthors(author, 2, 20)[0] }))
         if (validateAuthors(author, 2, 20)[0]) {
-            const newAuthor = { id: generateId(), name: author }
+            const newAuthor = { id: generateId(), name: author };
+            dispatch(addAuthor([newAuthor]))
             setAllAuthors((prev) => ([...prev, newAuthor]))
-            dispatch(addAuthor(newAuthor))
+
             setFormValues((prev) => ({
                 ...prev,
                 author: ''
