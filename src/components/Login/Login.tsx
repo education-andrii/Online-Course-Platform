@@ -9,10 +9,13 @@ import { useState } from 'react';
 import { IsValidAuth } from '../Registration/Registration';
 import loginUserApi from '../../helpers/loginUserApi';
 import { useNavigate } from 'react-router-dom';
-interface Props {
-    onLogIn: Function
-}
-const Login: React.FC<Props> = ({ onLogIn }) => {
+import { useDispatch } from 'react-redux';
+import { userActions } from '@/store/user/userSlice';
+
+const Login: React.FC = () => {
+
+    const dispatch = useDispatch();
+
     const [formValues, setFormValues] = useState({
         email: "",
         password: ""
@@ -38,7 +41,7 @@ const Login: React.FC<Props> = ({ onLogIn }) => {
         }))
         setIsFormValid((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: true,
         }))
     }
 
@@ -64,7 +67,11 @@ const Login: React.FC<Props> = ({ onLogIn }) => {
             const result = await loginUserApi(loginData)
 
             if (result.successful !== false) {
-                onLogIn(result.result, result.user.name)
+                dispatch(userActions.login({
+                    token: result.result,
+                    name: result.user.name,
+                    email: result.user.email
+                }))
                 navigate('/courses', { replace: true })
                 // e.currentTarget.reset();
                 setFormValues({
