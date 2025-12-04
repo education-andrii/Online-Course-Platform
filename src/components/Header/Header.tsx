@@ -7,21 +7,26 @@ import Button from '../../common/Button/Button';
 import { BUTTON_LOGOUT_TEXT } from '../../constants';
 
 import './Header.scss'
+
 import { useEffect, useState } from 'react';
-interface Props {
-    isAuthorized: boolean;
-    onLogOut: Function
-}
-const Header: React.FC<Props> = ({ isAuthorized, onLogOut }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserName, isUserAuth } from '@/selectors/selectors';
+import { userActions } from '@/store/user/userSlice';
+
+const Header: React.FC = () => {
+
+    const dispatch = useDispatch()
+    const userName = useSelector(getUserName)
+
     const navigate = useNavigate()
     const location = useLocation();
     const [displayName, setDisplayName] = useState<string>('')
-    let isLogged = isAuthorized
+    const isAuthorized = useSelector(isUserAuth)
 
     useEffect(() => {
         if (isAuthorized) {
             const getUserName = () => {
-                const name = localStorage.getItem('user') || '';
+                const name = userName;
                 setDisplayName(name)
             }
             getUserName();
@@ -31,17 +36,17 @@ const Header: React.FC<Props> = ({ isAuthorized, onLogOut }) => {
     }, [isAuthorized])
 
     const handleLogOutClick = () => {
-        onLogOut();
+        dispatch(userActions.logout())
         navigate('/login');
     }
 
     return (<header className='header'>
         <Logo></Logo>
         {(location.pathname !== '/login' && location.pathname !== '/registration') &&
-            (isLogged &&
+            (isAuthorized &&
                 <div>
                     <span className='headerDisplayName'>{displayName}</span>
-                    <Button buttonText={BUTTON_LOGOUT_TEXT} onClick={handleLogOutClick}></Button>
+                    <Button name='Logout' role='button' buttonText={BUTTON_LOGOUT_TEXT} onClick={handleLogOutClick}></Button>
                 </div>
             )
         }
