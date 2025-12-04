@@ -6,7 +6,7 @@ import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
 import remove from '@/assets/Icons/trash-bin.svg'
 import update from '@/assets/Icons/pencil.svg'
 import { useDispatch } from 'react-redux';
-import { coursesActions } from '@/store/courses/coursesSlice';
+import { deleteCourse } from '@/store/courses/coursesSlice';
 
 interface Props {
     course: {
@@ -24,7 +24,7 @@ const CourseCard: React.FC<Props> = ({ course }) => {
     const { id, title, description, creationDate, duration, authors } = course
 
     const handleDeleteCourse = () => {
-        dispatch(coursesActions.deleteCourse(id))
+        dispatch(deleteCourse(id))
     }
 
     return (

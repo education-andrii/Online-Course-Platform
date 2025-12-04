@@ -10,7 +10,7 @@ import { IsValidAuth } from '../Registration/Registration';
 import loginUserApi from '../../helpers/loginUserApi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userActions } from '@/store/user/userSlice';
+import { login } from '@/store/user/userSlice';
 
 const Login: React.FC = () => {
 
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
             const result = await loginUserApi(loginData)
 
             if (result.successful !== false) {
-                dispatch(userActions.login({
+                dispatch(login({
                     token: result.result,
                     name: result.user.name,
                     email: result.user.email

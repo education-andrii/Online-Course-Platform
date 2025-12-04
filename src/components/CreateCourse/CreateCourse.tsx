@@ -21,8 +21,8 @@ import formatCreationDate from "../../helpers/formatCreationDate";
 
 import { AuthorsType } from "../Courses/Courses";
 import { useDispatch } from "react-redux";
-import { coursesActions } from "@/store/courses/coursesSlice";
-import { authorsActions } from "@/store/authors/authorsSlice";
+import { addCourse } from "@/store/courses/coursesSlice";
+import { addAuthor } from "@/store/authors/authorsSlice";
 
 
 // const forbiddenSymbols = /[@#$%^&]/
@@ -203,8 +203,8 @@ const CreateCourse: React.FC = () => {
                 duration: Number(duration),
                 authors: addedToCourseAuthors.map((i) => i.id)
             }
-            dispatch(coursesActions.addCourse(newCourse))
-            dispatch(authorsActions.addAuthors(addedToCourseAuthors))
+            dispatch(addCourse(newCourse))
+            dispatch(addAuthor(addedToCourseAuthors))
 
             //----------------------------------------
             event.currentTarget.reset();

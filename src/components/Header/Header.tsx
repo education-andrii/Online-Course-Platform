@@ -11,7 +11,7 @@ import './Header.scss'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserName, isUserAuth } from '@/selectors/selectors';
-import { userActions } from '@/store/user/userSlice';
+import { logout } from '@/store/user/userSlice';
 
 const Header: React.FC = () => {
 
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
     }, [isAuthorized])
 
     const handleLogOutClick = () => {
-        dispatch(userActions.logout())
+        dispatch(logout())
         navigate('/login');
     }
 

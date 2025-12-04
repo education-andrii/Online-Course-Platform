@@ -14,9 +14,9 @@ import styles from './Courses.module.scss';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthors, getCourses } from '@/selectors/selectors.ts';
-import { coursesActions } from '@/store/courses/coursesSlice.ts';
+import { setCourses } from '@/store/courses/coursesSlice.ts';
 import { getAuthorsApi, getCoursesApi } from '@/services/services.ts';
-import { authorsActions } from '@/store/authors/authorsSlice.ts';
+import { setAuthors } from '@/store/authors/authorsSlice.ts';
 
 export interface AuthorsType {
     id: string;
@@ -52,11 +52,11 @@ const Courses: React.FC = () => {
             try {
                 if (courses.length === 0) {
                     const coursesData = await getCoursesApi();
-                    dispatch(coursesActions.setCourses(coursesData.result))
+                    dispatch(setCourses(coursesData.result))
                 }
                 if (authors.length === 0) {
                     const authorsData = await getAuthorsApi();
-                    dispatch(authorsActions.setAuthors(authorsData.result))
+                    dispatch(setAuthors(authorsData.result))
                 }
             } catch (error) {
                 setLoadingError('Data loading error...')
