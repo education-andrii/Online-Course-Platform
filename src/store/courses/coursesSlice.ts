@@ -15,6 +15,9 @@ const coursesSlice = createSlice({
         deleteCourse(state, action: PayloadAction<string>) {
             const courseToRemoveId = action.payload
             return state.filter(course => course.id !== courseToRemoveId)
+        },
+        updateCourse(state) {
+            return state
         }
     }
 })

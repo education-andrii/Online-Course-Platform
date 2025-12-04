@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './CourseCard.scss';
 import Button from '../../../../common/Button/Button';
 import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
-import remove from '@/assets/Icons/trash-can.svg'
+import remove from '@/assets/Icons/trash-bin.svg'
 import update from '@/assets/Icons/pencil.svg'
 import { useDispatch } from 'react-redux';
 import { coursesActions } from '@/store/courses/coursesSlice';
