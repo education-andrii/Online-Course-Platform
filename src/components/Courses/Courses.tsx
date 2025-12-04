@@ -5,13 +5,18 @@ import Button from '../../common/Button/Button.tsx';
 import SearchBar from './components/SearchBar/SearchBar.tsx';
 import EmptyCourseList from '../EmptyCourseList/EmptyCourseList.tsx';
 
-import { BUTTON_ADD_NEW_COURSE_TEXT, mockedAuthorsList, mockedCoursesList } from '../../constants.ts';
+import { BUTTON_ADD_NEW_COURSE_TEXT } from '../../constants.ts';
 
 import getCourseDuration from '../../helpers/getCourseDuration.ts';
 import getAuthorsNames from '../../helpers/getAuthorsNames.ts';
 
 import styles from './Courses.module.scss';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthors, getCourses } from '@/selectors/selectors.ts';
+import { coursesActions } from '@/store/courses/coursesSlice.ts';
+import { getAuthorsApi, getCoursesApi } from '@/services/services.ts';
+import { authorsActions } from '@/store/authors/authorsSlice.ts';
 
 export interface AuthorsType {
     id: string;
@@ -27,37 +32,67 @@ export interface CoursesType {
     authors: string[];
 }
 
-interface Props {
-    authors: AuthorsType[]
-    courses: CoursesType[]
-}
 
-const Courses: React.FC<Props> = ({ authors = mockedAuthorsList, courses = mockedCoursesList }) => {
-    const [displayedCourses, setDisplayedCourses] = useState<CoursesType[]>([]);
+const Courses: React.FC = () => {
+    const dispatch = useDispatch()
+    const courses: CoursesType[] = useSelector(getCourses)
+    const authors: AuthorsType[] = useSelector(getAuthors)
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isLoading, setIsLoading] = useState(courses.length === 0 || authors.length === 0)
+    const [loadingError, setLoadingError] = useState<string | null>(null)
+
     //For async data
     useEffect(() => {
-        if (courses) {
-            setDisplayedCourses(courses)
+        if (courses.length > 0 && authors.length > 0) {
+            setIsLoading(false)
+            return
         }
-    }, [courses])
+        const loadData = async () => {
+            try {
+                if (courses.length === 0) {
+                    const coursesData = await getCoursesApi();
+                    dispatch(coursesActions.setCourses(coursesData.result))
+                }
+                if (authors.length === 0) {
+                    const authorsData = await getAuthorsApi();
+                    dispatch(authorsActions.setAuthors(authorsData.result))
+                }
+            } catch (error) {
+                setLoadingError('Data loading error...')
+            } finally {
+                setIsLoading(false);
+            }
+
+        }
+        loadData();
+    }, [])
     //------------
+
+    if (isLoading) {
+        return <div className={styles.loading}>Loading...</div>
+    }
+
+    if (loadingError) {
+        return <div className={styles.error}>{loadingError}</div>
+    }
+
     if (!courses || courses.length === 0) {
         return <EmptyCourseList />
     }
 
-    const handleSearch = (searchTerm: string) => {
-        const term = searchTerm.toLowerCase().trim() || '';
-        if (term === '') {
-            setDisplayedCourses(courses)
-            return;
-        }
-        const filteredCourses = courses.filter((course) => {
-            const titleTerm = course.title.toLowerCase().includes(term);
-            const idTerm = course.id.toLowerCase().includes(term);
-            return titleTerm || idTerm
-        })
-        setDisplayedCourses(filteredCourses)
+    const handleSearch = (newSearchTerm: string) => {
+        setSearchTerm(newSearchTerm.toLowerCase().trim() || '');
     }
+    const filteredCourses = courses.filter((course) => {
+        if (searchTerm === '') {
+            return true;
+        }
+        const titleTerm = course.title.toLowerCase().includes(searchTerm);
+        const idTerm = course.id.toLowerCase().includes(searchTerm);
+        return titleTerm || idTerm
+    })
+
 
     return (
         <div className={styles.mainCoursesContainer}>
@@ -66,9 +101,9 @@ const Courses: React.FC<Props> = ({ authors = mockedAuthorsList, courses = mocke
                 <Link to="/courses/add"><Button buttonText={BUTTON_ADD_NEW_COURSE_TEXT} width='183px' height='50px' /></Link>
             </div>
             <ul className={styles.coursesList}>
-                {displayedCourses.length === 0 ?
+                {filteredCourses.length === 0 ?
                     <h1>No matches found...</h1>
-                    : displayedCourses.map((course, index) => {
+                    : filteredCourses.map((course, index) => {
                         let courseAuthors: string = getAuthorsNames(authors, course.authors)
                         let newCourse = {
                             id: course.id,
