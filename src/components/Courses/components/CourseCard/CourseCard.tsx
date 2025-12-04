@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './CourseCard.scss';
 import Button from '../../../../common/Button/Button';
 import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
+import remove from '@/assets/Icons/trash-can.svg'
+import update from '@/assets/Icons/pencil.svg'
+import { useDispatch } from 'react-redux';
+import { coursesActions } from '@/store/courses/coursesSlice';
 
 interface Props {
     course: {
@@ -16,7 +20,12 @@ interface Props {
 }
 
 const CourseCard: React.FC<Props> = ({ course }) => {
+    const dispatch = useDispatch();
     const { id, title, description, creationDate, duration, authors } = course
+
+    const handleDeleteCourse = () => {
+        dispatch(coursesActions.removeCourse(id))
+    }
 
     return (
         <div className='courseCard' id={id}>
@@ -33,7 +42,13 @@ const CourseCard: React.FC<Props> = ({ course }) => {
                             <li><b>Duration:</b> {duration}</li>
                             <li><b>Created:</b> {creationDate}</li>
                         </ul>
-                        <Link to={id}><Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px'></Button></Link>
+                        <div className='userButtons'>
+                            <Link to={id}><Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px'></Button></Link>
+                            <div>
+                                <Button onClick={handleDeleteCourse} name='Delete' role='button' width='60px' height='50px'><img src={remove} alt="Delete" /></Button>
+                                <Button name='Update' role='button' width='60px' height='50px'><img src={update} alt="Update" /></Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

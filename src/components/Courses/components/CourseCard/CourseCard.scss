@@ -63,6 +63,17 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
+            .userButtons {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+
+                &>div {
+                    display: flex;
+                    gap: 10px;
+                }
+            }
         }
     }
 }
