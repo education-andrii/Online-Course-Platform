@@ -206,7 +206,7 @@ const CreateCourse: React.FC = () => {
                 authors: addedToCourseAuthors.map((i) => i.id)
             }
             dispatch(addCourse(newCourse))
-            dispatch(addAuthor(addedToCourseAuthors))
+            // dispatch(addAuthor(addedToCourseAuthors))
 
             //----------------------------------------
             event.currentTarget.reset();
