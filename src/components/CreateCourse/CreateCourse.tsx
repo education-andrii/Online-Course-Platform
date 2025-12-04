@@ -20,6 +20,9 @@ import styles from './CreateCourse.module.scss'
 import formatCreationDate from "../../helpers/formatCreationDate";
 
 import { AuthorsType } from "../Courses/Courses";
+import { useDispatch } from "react-redux";
+import { coursesActions } from "@/store/courses/coursesSlice";
+import { authorsActions } from "@/store/authors/authorsSlice";
 
 
 // const forbiddenSymbols = /[@#$%^&]/
@@ -39,12 +42,9 @@ interface errorsObject {
     author?: string;
 }
 
-interface Props {
-    onDataSubmit: Function;
-}
+const CreateCourse: React.FC = () => {
 
-
-const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
+    const dispatch = useDispatch();
 
     const navigate = useNavigate()
 
@@ -203,8 +203,9 @@ const CreateCourse: React.FC<Props> = ({ onDataSubmit }) => {
                 duration: Number(duration),
                 authors: addedToCourseAuthors.map((i) => i.id)
             }
+            dispatch(coursesActions.addCourses(newCourse))
+            dispatch(authorsActions.addAuthors(addedToCourseAuthors))
 
-            onDataSubmit(newCourse, addedToCourseAuthors);
             //----------------------------------------
             event.currentTarget.reset();
             setAddedToCourseAuthors([]);
