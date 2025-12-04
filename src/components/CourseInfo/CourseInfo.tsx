@@ -1,24 +1,20 @@
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import { BUTTON_BACK_TEXT, mockedAuthorsList, mockedCoursesList } from '../../constants.ts'
+import { BUTTON_BACK_TEXT } from '../../constants.ts'
 import Button from '../../common/Button/Button.tsx';
-
-import { CoursesType } from "../Courses/Courses.tsx";
-import { AuthorsType } from '../Courses/Courses.tsx';
 
 import getAuthorsNames from '../../helpers/getAuthorsNames.ts';
 import getCourseDuration from '../../helpers/getCourseDuration.ts';
 
 import styles from './CourseInfo.module.scss';
 
+import { useSelector } from 'react-redux';
+import { getAuthors, getCourses } from '@/selectors/selectors.ts';
 
-interface Props {
-    allAuthors: AuthorsType[]
-    allCourses: CoursesType[]
-}
-
-const CourseInfo: React.FC<Props> = ({ allAuthors = mockedAuthorsList, allCourses = mockedCoursesList }) => {
+const CourseInfo: React.FC = () => {
+    const allCourses = useSelector(getCourses);
+    const allAuthors = useSelector(getAuthors)
     const { courseId } = useParams();
     const course = allCourses.find(courseItem => courseItem.id === courseId)
     if (!course) {
