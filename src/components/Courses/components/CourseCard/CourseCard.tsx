@@ -7,7 +7,7 @@ import remove from '@/assets/Icons/trash-bin.svg'
 import update from '@/assets/Icons/pencil.svg'
 import { useDispatch } from 'react-redux';
 import { deleteCourse, updateCourse } from '@/store/courses/coursesSlice';
-import { useState } from 'react';
+import { addAuthor } from '@/store/authors/authorsSlice';
 
 interface Props {
     course: {
@@ -27,16 +27,18 @@ const CourseCard: React.FC<Props> = ({ course }) => {
     const handleDeleteCourse = () => {
         dispatch(deleteCourse(id))
     }
-    const [newTitle, setNewTitle] = useState(title);
+
     const handleUpdateCourse = () => {
-        dispatch(updateCourse())
-        setNewTitle('Updated Course')
+        dispatch(updateCourse({ id, title: 'Updated Course', description, creationDate, duration: 20, authors: ['1', '2'] }));
+        dispatch(addAuthor({ id: '1', name: 'John Doe' }))
+        dispatch(addAuthor({ id: '2', name: 'John Smith' }))
     }
+
     return (
         <div className='courseCard' id={id}>
             <div className="left-line"></div>
             <div className="course-card-container">
-                <h4 className='title'>{newTitle}</h4>
+                <h4 className='title'>{title}</h4>
                 <div className='left-right-container'>
                     <div className="left-side">
                         <p className='description'>{description}</p>

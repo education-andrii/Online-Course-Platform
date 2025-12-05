@@ -10,7 +10,9 @@ const authorsSlice = createSlice({
             return action.payload
         },
         addAuthor(state, action) {
-            state.push(action.payload)
+            const exists = state.some(author => author.id === action.payload.id)
+
+            if (!exists) state.push(action.payload)
         }
     }
 })

@@ -16,8 +16,12 @@ const coursesSlice = createSlice({
             const courseToRemoveId = action.payload
             return state.filter(course => course.id !== courseToRemoveId)
         },
-        updateCourse(state) {
-            return state
+        updateCourse(state, action: PayloadAction<CoursesType>) {
+            const updatedCourse = action.payload
+            const index = state.findIndex(course => course.id === updatedCourse.id)
+            if (index !== -1) {
+                state[index] = updatedCourse
+            }
         }
     }
 })
