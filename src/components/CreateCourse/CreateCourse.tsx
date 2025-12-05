@@ -124,7 +124,7 @@ const CreateCourse: React.FC = () => {
         setIsInputValid((prev) => ({ ...prev, author: validateAuthors(author, 2, 20)[0] }))
         if (validateAuthors(author, 2, 20)[0]) {
             const newAuthor = { id: generateId(), name: author };
-            dispatch(addAuthor([newAuthor]))
+            dispatch(addAuthor(newAuthor))
             setAllAuthors((prev) => ([...prev, newAuthor]))
 
             setFormValues((prev) => ({
@@ -206,7 +206,6 @@ const CreateCourse: React.FC = () => {
                 authors: addedToCourseAuthors.map((i) => i.id)
             }
             dispatch(addCourse(newCourse))
-            // dispatch(addAuthor(addedToCourseAuthors))
 
             //----------------------------------------
             event.currentTarget.reset();

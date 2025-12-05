@@ -10,7 +10,7 @@ const authorsSlice = createSlice({
             return action.payload
         },
         addAuthor(state, action) {
-            state.push(...action.payload)
+            state.push(action.payload)
         }
     }
 })

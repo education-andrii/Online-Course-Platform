@@ -6,7 +6,8 @@ import { BUTTON_SHOW_COURSE_TEXT } from '../../../../constants';
 import remove from '@/assets/Icons/trash-bin.svg'
 import update from '@/assets/Icons/pencil.svg'
 import { useDispatch } from 'react-redux';
-import { deleteCourse } from '@/store/courses/coursesSlice';
+import { deleteCourse, updateCourse } from '@/store/courses/coursesSlice';
+import { useState } from 'react';
 
 interface Props {
     course: {
@@ -26,12 +27,16 @@ const CourseCard: React.FC<Props> = ({ course }) => {
     const handleDeleteCourse = () => {
         dispatch(deleteCourse(id))
     }
-
+    const [newTitle, setNewTitle] = useState(title);
+    const handleUpdateCourse = () => {
+        dispatch(updateCourse())
+        setNewTitle('Updated Course')
+    }
     return (
         <div className='courseCard' id={id}>
             <div className="left-line"></div>
             <div className="course-card-container">
-                <h4 className='title'>{title}</h4>
+                <h4 className='title'>{newTitle}</h4>
                 <div className='left-right-container'>
                     <div className="left-side">
                         <p className='description'>{description}</p>
@@ -46,7 +51,7 @@ const CourseCard: React.FC<Props> = ({ course }) => {
                             <Link to={id}><Button buttonText={BUTTON_SHOW_COURSE_TEXT} width='180px' height='50px'></Button></Link>
                             <div>
                                 <Button onClick={handleDeleteCourse} name='Delete' role='button' width='60px' height='50px'><img src={remove} alt="Delete" /></Button>
-                                <Button name='Update' role='button' width='60px' height='50px'><img src={update} alt="Update" /></Button>
+                                <Button onClick={handleUpdateCourse} name='Update' role='button' width='60px' height='50px'><img src={update} alt="Update" /></Button>
                             </div>
                         </div>
                     </div>
