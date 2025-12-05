@@ -5,8 +5,8 @@ type Authors = {
 
 const getAuthorsNames = (authors: Authors[], courseAuthorsIds: string[]): string => {
     if (authors !== undefined) {
-        const authorsArray = authors.filter((author) => courseAuthorsIds.includes(author.id));
-        return authorsArray.map((author) => author.name).join(', ');
+        const authorsArray = courseAuthorsIds.map((author) => authors.find(authorItem => authorItem.id === author));
+        return authorsArray.map((author) => author?.name).join(', ');
     } else {
         return '';
     }
