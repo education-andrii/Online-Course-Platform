@@ -1,0 +1,7 @@
+# pack-refs with: peeled fully-peeled sorted 
+72b2696bf4331658ed9a91d04b1a15e7a0e812ea refs/heads/main
+17190635691e27c05bd81543b66442ed07485bb0 refs/heads/mastering-asynchronous-redux
+030966c4854a17875d57c49eb894c3fde25e69cd refs/heads/mastering-react-components
+594a445bb5a43247b2125b534ba7e5844202ac00 refs/heads/mastering-react-forms
+513848ecb692f4d4c8a5d72a0f5921c6723be7c5 refs/heads/mastering-react-routing
+acef900ad551ab0b38da0f8a587076f5a6bb7f9e refs/heads/mastering-state-in-react-redux

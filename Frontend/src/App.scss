@@ -1,0 +1,27 @@
+.App {
+    display: grid;
+    grid:
+        'header header header' 80px '. main .' auto / 1fr 8fr 1fr;
+
+    row-gap: 3rem;
+
+    .header {
+        grid-area: header;
+    }
+
+    // .mainCoursesContainer {
+    //     grid-area: main;
+    //     margin-top: 4.5rem;
+    // }
+
+    // .emptyCourseList {
+    //     grid-area: main;
+    // }
+
+    // .courseInfoWrapper {
+    //     grid-area: main;
+    //     gap: 1rem;
+    //     margin: 3rem;
+    // }
+
+}
