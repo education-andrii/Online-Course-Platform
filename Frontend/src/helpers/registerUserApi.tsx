@@ -1,8 +1,9 @@
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
 const registerUserApi = async (newUser: { name: string, email: string, password: string }) => {
 
     try {
-        const response = await fetch('http://localhost:4000/register', {
+        const response = await fetch(`${API_BASE_URL}/register`, {
             method: 'POST',
             body: JSON.stringify(newUser),
             headers: {
