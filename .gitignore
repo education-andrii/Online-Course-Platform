@@ -14,7 +14,7 @@ dist-ssr
 
 # We don't commit package-lock.json cause student
 # potetially will use different Node.js version
-package-lock.json
+# package-lock.json
 junit.xml
 xunit.xml
 package-lock.json
@@ -28,4 +28,20 @@ package-lock.json
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw? 
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build artifacts
+build/
+out/
+.vercel
+.cache/
+
+# Backend
+coverage/
+.nyc_output/
