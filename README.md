@@ -42,13 +42,17 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
  3. Frontend setup: go to the /frontend directory `cd frontend` and install the dependencies in your CLI. Use `npm install`
 
 #### Environment Variables
-  Before running the app, you need to configure the environment variables<br/>
-  **Frontend Configuration**<br/>
+  Before running the app, you need to configure the environment variables
+  
+  **Frontend Configuration**
+  
   Create a `.env` file in the `frontend` folder and provide the API URL:
   ```env
   VITE_API_URL=http://localhost:4000
-  ```<br/>
-  **Backend Configuration**<br/>
+  ```
+
+  **Backend Configuration**
+  
   By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `/backend` folder:
   ```env
   PORT=4000
