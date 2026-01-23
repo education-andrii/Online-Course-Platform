@@ -46,7 +46,7 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 #### Environment Variables (optional)
   Note: The project works out-of-the-box with default local settings if no .env files are found
   
-  #####* Frontend Configuration
+  * ##### Frontend Configuration
   
   By default, the app connects to localhost:4000, to change this create a `.env` file in the `frontend` directory and provide the API URL, for example:
   ```env
@@ -54,7 +54,7 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
   ```
   *Note: All variables in Vite must start with the VITE_ prefix*
 
-  #####* Backend Configuration
+  * ##### Backend Configuration
   
   By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `backend` directory, for example:
   ```env
