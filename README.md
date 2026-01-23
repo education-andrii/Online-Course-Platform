@@ -39,23 +39,29 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 ##### To set up this project you have to follow these steps:
  1. Clone the repository. Use `git copy https://github.com/education-andrii/Online-Course-Platform.git` to clone with HTTPS.<br/>
 
- 2. Backend setup: go to the directory `cd backend` and install dependencies in your CLI. Use `npm install`
+ 2. Backend setup: go to the directory `cd backend` and install dependencies in your CLI.
+   ```bash
+  npm install  
+  ```
 
- 3. Frontend setup: go to the directory `cd frontend` and install dependencies. Use `npm install`
+ 4. Frontend setup: go to the directory `cd frontend` and install dependencies.
+    ```bash
+  npm install  
+  ```
 
 #### Environment Variables
   Before running the app, you need to configure the environment variables
   
   * **Frontend Configuration**
   
-  Create a `.env` file in the `frontend` folder and provide the API URL:
+  Create a `.env` file in the `frontend` directory and provide the API URL:
   ```env
   VITE_API_URL=http://localhost:4000
   ```
 
   * **Backend Configuration**
   
-  By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `/backend` folder:
+  By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `backend` directory:
   ```env
   PORT=4000
   JWT_SECRET=your_secret_key (if applicable)
