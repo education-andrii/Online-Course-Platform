@@ -44,14 +44,14 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 #### Environment Variables
   Before running the app, you need to configure the environment variables
   
-  **Frontend Configuration**
+  * **Frontend Configuration**
   
   Create a `.env` file in the `frontend` folder and provide the API URL:
   ```env
   VITE_API_URL=http://localhost:4000
   ```
 
-  **Backend Configuration**
+  * **Backend Configuration**
   
   By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `/backend` folder:
   ```env
