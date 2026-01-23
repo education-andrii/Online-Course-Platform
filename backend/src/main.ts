@@ -18,10 +18,17 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
 
-  app.enableCors();
+  app.enableCors({
+    origin: [
+      'https://online-course-platform-wine.vercel.app',
+      'http://localhost:5173',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  });
   SwaggerModule.setup('api', app, document);
 
   // await app.listen(4000);
-await app.listen(process.env.PORT || 4000);
+  await app.listen(process.env.PORT || 4000);
 }
 bootstrap();
