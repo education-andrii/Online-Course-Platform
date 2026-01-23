@@ -1,5 +1,6 @@
 # 🎓 Online Course Platform
-## This is a full-stack educational web application, an online course website for managing and viewing educational courses with an integrated authorization system and a dynamic interface
+![Node Version](https://img.shields.io/badge/node-v20.0.0+-blue?style=flat-square&logo=node.js) ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) ![Redux](https://img.shields.io/badge/Redux-593D88?style=flat-square&logo=redux&logoColor=white) ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white) ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white) [![Deployment Status](https://online-course-platform-wine.vercel.app/api/badge)](https://online-course-platform-wine.vercel.app)
+## A full-stack educational web application, an online course website for managing and viewing educational courses with an integrated authorization system and a dynamic interface
 
 ### 🔗 Live Demo
 
@@ -17,42 +18,53 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 
 ```text
 .
-├── backend/                # NestJS Application
-│   ├── src/
-│   │   ├── bd/             # Local Database (JSON)
-│   │   ├── modules/        # API Logic (Auth, Courses, Users)
-│   │   └── main.ts         # Swagger & Server Config
-│   └── package.json
-│
-├── frontend/               # React Application
-│   ├── src/
-│   │   ├── store/          # Redux Toolkit (Slices & Store)
-│   │   ├── components/     # Atomic UI components
-│   │   ├── pages/          # Page-level components
-│   │   ├── services/       # Axios API instances
-│   │   └── App.tsx         # Routing logic
-│   ├── vercel.json         # Vercel SPA routing config
-│   └── package.json
-└── README.md
+├── backend/                # NestJS + Swagger API
+│   ├── bd/                 # Local database (JSON)
+│   ├── src/                # Core logic (Auth, Courses, Users)
+└── frontend/               # React + TypeScript (Vite)
+    ├── src/store/          # Redux Toolkit logic
+    ├── src/components      # Route-level components (Pages, header)
+    ├── src/common          # Component-level components (Buttons)
+    └── src/services/       # API integration
 ```
 
 ### ⚙️ Setting up
 ##### ⚠️ This project requires a parallel launch of the Backend API and the Frontend client to function correctly
 ##### To set up this project you have to follow these steps:
  1. Clone the repository. Use `git copy https://github.com/education-andrii/Online-Course-Platform.git` to clone with HTTPS.<br/>
- Or `git copy git@github.com:education-andrii/Online-Course-Platform.git` to clone with SSH.
 
  2. Backend setup: go to the /backend directory `cd backend` and install the dependencies in your CLI. Use `npm install`
 
  3. Frontend setup: go to the /frontend directory `cd frontend` and install the dependencies in your CLI. Use `npm install`
 
+#### Environment Variables
+  Before running the app, you need to configure the environment variables
+  **Frontend Configuration**
+  Create a `.env` file in the `frontend` folder and provide the API URL:
+  ```env
+  VITE_API_URL=http://localhost:4000
+  ```
+ **Backend Configuration**
+  By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `/backend` folder:
+  ```env
+  PORT=4000
+  JWT_SECRET=your_secret_key (if applicable)
+  ```
+
 ### 🚀 Running
  In order to run the project correctly, it is necessary to launch the Frontend and Backend services in parallel.
- 1. Go to the /backend directory `cd backend` and utilize this command: `npm run start:dev`  
+ 1. **Backend:** Go to the directory `cd backend` and utilize this command:
+  ```bash
+  npm run start:dev  
+  ```
  * API Documentation: http://localhost:4000/api
  * Default Port: 4000
+ * **Environment:** The server runs on port `4000` by default. You can override this by setting a `PORT` environment variable.
 
- 2. To run frontend, go to the /frontend directory `cd frontend`. Use this command: `npm run start`  
+ 2. **Frontend:** To run frontend, go to the directory `cd frontend` and use this command: 
+  ```bash
+    npm run dev  
+  ```
  * App URL: http://localhost:5173
  * Environment: Powered by Vite
 
@@ -72,4 +84,3 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
  2. To check the final assembly:
  * `npm run build`
  * `npm run preview`
- 
