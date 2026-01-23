@@ -8,6 +8,7 @@ export const BUTTON_REGISTRATION_TEXT = "REGISTRATION";
 export const BUTTON_CANCEL_TEXT = "CANCEL";
 export const BUTTON_CREATE_COURSE_TEXT = "CREATE COURSE";
 export const BUTTON_CREATE_AUTHOR_TEXT = "CREATE AUTHOR";
+export const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
 export const INPUT_INPUT_TEXT_PLACEHOLDER = 'Input text'
 

@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+import { API_BASE_URL } from "@/constants";
 export const getCoursesApi = async () => {
     try {
         const response = await fetch(`${API_BASE_URL}/courses/all`)
