@@ -1,7 +1,7 @@
 # 🎓 Online Course Platform
 ## This is a full-stack educational web application, an online course website for managing and viewing educational courses with an integrated authorization system and a dynamic interface
 
-## 🔗 Live Demo
+### 🔗 Live Demo
 
   You can explore the live version of the application here:
   **[View Live Demo](online-course-platform-wine.vercel.app)**
