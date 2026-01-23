@@ -24,14 +24,14 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 
 ```text
 .
-├── backend/                # NestJS + Swagger API
-│   ├── bd/                 # Local database (JSON)
-│   ├── src/                # Core logic (Auth, Courses, Users)
-└── frontend/               # React + TypeScript (Vite)
-    ├── src/store/          # Redux Toolkit logic
-    ├── src/components      # Route-level components (Pages, header)
-    ├── src/common          # Component-level components (Buttons)
-    └── src/services/       # API integration
+├── backend/                # NestJS API
+│   ├── bd/                 # Database (JSON storage)
+│   └── src/                # Modules (Auth, Courses, Users)
+└── frontend/               # React + Vite
+    ├── src/store/          # Redux State Management
+    ├── src/components/     # Pages & Layouts
+    ├── src/common/         # Shared UI Components (UI Kit)
+    └── src/services/       # API Integration
 ```
 
 ### ⚙️ Setting up
