@@ -17,7 +17,7 @@
 
 Since the Backend is hosted on **Render's free tier**, the server may "go to sleep" after a period of inactivity. 
 
-* **Cold Start:** If you are accessing the live site for the first time in a while, the initial request might take approximately **~50 seconds** to wake up the server.
+* **Cold Start:** If you are accessing the live site for the first time in a while, the initial request might take approximately **~40 seconds** to wake up the server.
 * If the page appears empty or shows a loading error, please wait a minute and refresh the page. Once the server is "awake," it will respond instantly.
 
 ## 📂 Project Structure
@@ -43,21 +43,23 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 
  3. Frontend setup: go to the directory `cd frontend` and install dependencies. Use `npm install`
 
-#### Environment Variables
-  Before running the app, you need to configure the environment variables
+#### Environment Variables (optional)
+  Note: The project works out-of-the-box with default local settings if no .env files are found
   
   * **Frontend Configuration**
   
-  Create a `.env` file in the `frontend` directory and provide the API URL:
+  By default, the app connects to localhost:4000, to change this create a `.env` file in the `frontend` directory and provide the API URL, for example:
   ```env
   VITE_API_URL=http://localhost:4000
   ```
+  Note: All variables in Vite must start with the VITE_ prefix
 
   * **Backend Configuration**
   
-  By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `backend` directory:
+  By default, the server runs on port `4000`. To customize this or add security keys, create a `.env` file in the `backend` directory, for example:
   ```env
   PORT=4000
+  FRONTEND_URL=http://localhost:5173
   JWT_SECRET=your_secret_key (if applicable)
   ```
 
