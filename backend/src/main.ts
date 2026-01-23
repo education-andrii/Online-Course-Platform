@@ -19,10 +19,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
 
   app.enableCors({
-    origin: [
-      'https://online-course-platform-wine.vercel.app',
-      'http://localhost:5173',
-    ],
+    origin: [process.env.FRONTEND_URL, 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
