@@ -4,7 +4,7 @@
 ### 🔗 Live Demo
 
   You can explore the live version of the application here:
-  **[View Live Demo](online-course-platform-wine.vercel.app)**
+  **[View Live Demo](https://online-course-platform-wine.vercel.app)**
 
 #### ⚠️ Important Note on Live Demo
 
