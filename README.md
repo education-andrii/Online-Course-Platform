@@ -81,7 +81,7 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
  * App URL: http://localhost:5173
  * Environment: Powered by Vite
 
-### 🌍 Deployment
+### 🌎 Deployment
 
   * Backend: Hosted on Render (Node.js environment).
 
