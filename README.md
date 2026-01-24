@@ -6,7 +6,7 @@
 ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 ![Swagger](https://img.shields.io/badge/-Swagger-%23C1E1C1?style=flat-square&logo=swagger&logoColor=black)
-## A full-stack educational web application, an online course website for managing and viewing educational courses with an integrated authorization system and a dynamic interface
+## A full-stack educational platform for managing and exploring online courses with an integrated authorization system and a dynamic interface
 
 ### 🔗 Live Demo
 
