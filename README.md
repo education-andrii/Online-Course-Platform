@@ -5,6 +5,7 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white)
 ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-%2346E3B7.svg?style=flat&logo=render&logoColor=white)
 ![Swagger](https://img.shields.io/badge/-Swagger-%23C1E1C1?style=flat-square&logo=swagger&logoColor=black)
 ## A full-stack educational platform for managing and exploring online courses with an integrated authorization system and a dynamic interface
 
