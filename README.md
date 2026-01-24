@@ -95,9 +95,11 @@ You can run these commands inside the frontend or backend directories:
 **Frontend (React + Vite)**
 
 `npm run build` — Builds the app for production.
+
 `npm run preview` — Locally previews the production build.
 
 **Backend (NestJS)**
 
 `npm run start` — For development
+
 `npm run start:prod` — Starts the server in production mode.
