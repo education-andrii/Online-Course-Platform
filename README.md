@@ -75,7 +75,7 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 
  2. **Frontend:** To run frontend, go to the directory `cd frontend` and use this command: 
   ```bash
-    npm run dev  
+    npm run start  
   ```
  * App URL: http://localhost:5173
  * Environment: Powered by Vite
@@ -89,10 +89,12 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
   * CI/CD: Automatic deployments via GitHub integration.
 
 ### Additional scripts:
+You can run these commands inside the frontend or backend directories:
 
- 1. For development (With Hot Module Replacement):
- * `npm run dev`
+**Frontend (React + Vite)**
+    `npm run build` — Builds the app for production.
+    `npm run preview` — Locally previews the production build.
 
- 2. To check the final assembly:
- * `npm run build`
- * `npm run preview`
+**Backend (NestJS)**
+    `npm run start` — For development
+    `npm run start:prod` — Starts the server in production mode.
