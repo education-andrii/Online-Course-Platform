@@ -64,6 +64,7 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
   ```
 
 ### 🚀 Running
+
  In order to run the project correctly, it is necessary to launch the Frontend and Backend services in parallel.
  1. **Backend:** Go to the directory `cd backend` and utilize this command:
   ```bash
@@ -93,10 +94,10 @@ You can run these commands inside the frontend or backend directories:
 
 **Frontend (React + Vite)**
 
-    `npm run build` — Builds the app for production.
-    `npm run preview` — Locally previews the production build.
+`npm run build` — Builds the app for production.
+`npm run preview` — Locally previews the production build.
 
 **Backend (NestJS)**
 
-    `npm run start` — For development
-    `npm run start:prod` — Starts the server in production mode.
+`npm run start` — For development
+`npm run start:prod` — Starts the server in production mode.
