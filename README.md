@@ -70,7 +70,7 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
   ```bash
   npm run start:dev  
   ```
- * API Documentation: http://localhost:4000/api
+ * API Documentation: [Swagger UI](https://online-course-platform-backend-m35g.onrender.com/api) (Production) or http://localhost:4000/api (Local)
  * Default Port: 4000
  * **Environment:** The server runs on port `4000` by default. You can override this by setting a `PORT` environment variable.
 
