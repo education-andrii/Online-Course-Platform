@@ -38,7 +38,7 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 ### ⚙️ Setting up
 ##### ⚠️ This project requires a parallel launch of the Backend API and the Frontend client to function correctly
 ##### To set up this project you have to follow these steps:
- 1. Clone the repository. Use `git copy https://github.com/education-andrii/Online-Course-Platform.git` to clone with HTTPS.<br/>
+ 1. Clone the repository. Use `git clone https://github.com/education-andrii/Online-Course-Platform.git` to clone with HTTPS.<br/>
 
  2. Backend setup: go to the directory `cd backend` and install dependencies in your CLI. Use `npm install`
 
