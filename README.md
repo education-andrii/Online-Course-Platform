@@ -40,9 +40,15 @@ Since the Backend is hosted on **Render's free tier**, the server may "go to sle
 ##### To set up this project you have to follow these steps:
  1. Clone the repository. Use `git clone https://github.com/education-andrii/Online-Course-Platform.git` to clone with HTTPS.<br/>
 
- 2. Backend setup: go to the directory `cd backend` and install dependencies in your CLI. Use `npm install`
+ 2. Go to the project directory.
 
- 3. Frontend setup: go to the directory `cd frontend` and install dependencies. Use `npm install`
+ ```bash
+ cd Online-Course-Platform
+ ```
+ 
+ 3. Backend setup: go to the directory `cd backend` and install dependencies in your CLI. Use `npm install`
+
+ 4. Frontend setup: go to the directory `cd frontend` and install dependencies. Use `npm install`
 
 #### Environment Variables (optional)
   Note: The project works out-of-the-box with default local settings if no .env files are found
