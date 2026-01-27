@@ -1,0 +1,15 @@
+name: Keep Backend Server Awake
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Server
+        run: |
+          curl -s https://online-course-platform-backend-m35g.onrender.com/
+          echo "Server pinged successfully!"
