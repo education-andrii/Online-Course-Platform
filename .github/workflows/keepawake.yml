@@ -11,5 +11,5 @@ jobs:
     steps:
       - name: Ping Server
         run: |
-          curl -s https://online-course-platform-backend-m35g.onrender.com/
+          curl -s https://online-course-platform-backend-webserver.onrender.com
           echo "Server pinged successfully!"
