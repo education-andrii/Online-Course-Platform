@@ -14,13 +14,6 @@
 You can explore the live version of the application here:
 **[View Live Demo](https://online-course-platform-wine.vercel.app)**
 
-[//]: # #### ⚠️ Important Note on Live Demo
-
-Since the Backend is hosted on **Render's free tier**, the server may "go to sleep" after a period of inactivity. 
-
-* **Cold Start:** If you are accessing the live site for the first time in a while, the initial request might take approximately **~50 seconds** to wake up the server.
-* If the page appears empty or shows a loading error, please wait a minute and refresh the page. Once the server is "awake," it will respond instantly.
-
 ## 📂 Project Structure
 
 ```text
